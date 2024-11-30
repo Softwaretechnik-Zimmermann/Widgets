@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32630.194
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Launcher", "Launcher\Launcher.csproj", "{F38194D4-382D-4FD3-9B05-8579CAB5DFCB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B4E23036-2F13-4FE9-BE99-B68D5020C33A}"
+	ProjectSection(SolutionItems) = preProject
+		C:\Users\Celsius\Downloads\ookla-speedtest-1.2.0-win64\speedtest.exe = C:\Users\Celsius\Downloads\ookla-speedtest-1.2.0-win64\speedtest.exe
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F38194D4-382D-4FD3-9B05-8579CAB5DFCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F38194D4-382D-4FD3-9B05-8579CAB5DFCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F38194D4-382D-4FD3-9B05-8579CAB5DFCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F38194D4-382D-4FD3-9B05-8579CAB5DFCB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6BFFD90F-54BB-4323-B11F-1DCB55AD125F}
+	EndGlobalSection
+EndGlobal
