@@ -13,7 +13,7 @@
         AllowsTransparency="True" 
         MinWidth="400" MinHeight="300" 
         Background="{x:Null}" 
-        ShowInTaskbar="False" KeyDown="windowkeydown" Topmost="True" MouseEnter="window_mouseenter" Closing="windowclose">
+        ShowInTaskbar="False" KeyDown="windowkeydown" Topmost="True" MouseEnter="window_mouseenter" Closing="windowclose" Loaded="window_Loaded">
 
     <Window.Resources>
         <SolidColorBrush x:Key="StandardBorderBrush" Color="#888" />
@@ -493,21 +493,21 @@
                     <StackPanel x:Name="widgets" Orientation="Vertical">
                         <Grid x:Name="timeg" VerticalAlignment="Top" Margin="5,0,5,0">
                             <Border x:Name="timeb" Background="{Binding color1}" BorderBrush="{Binding BorderBrush, ElementName=settings}" BorderThickness="2" CornerRadius="{Binding CornerRadius, ElementName=settings}" Margin="0,0,0,10">
-                                <Label x:Name="time" Content="00:00:00" Foreground="{Binding color2}" Loaded="timerefresh" FontSize="46" HorizontalAlignment="Center" Background="{x:Null}" Height="74" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" Padding="0" VerticalAlignment="Center"/>
+                                <Label x:Name="time" Content="00:00:00" Foreground="{Binding color2}" Loaded="timerefresh" FontSize="44" HorizontalAlignment="Center" Background="{x:Null}" Height="74" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" Padding="0" VerticalAlignment="Center"/>
                             </Border>
                         </Grid>
                         <Grid x:Name="dateb" VerticalAlignment="Top" Margin="5,0,5,0">
                             <Border Background="{Binding Background, ElementName=timeb}" BorderBrush="{Binding BorderBrush, ElementName=timeb}" BorderThickness="2" CornerRadius="{Binding CornerRadius, ElementName=settings}" Margin="0,0,0,10" HorizontalAlignment="Stretch" VerticalAlignment="Center">
                                 <StackPanel>
-                                    <Label x:Name="day" Content="-----" Foreground="{Binding Foreground, ElementName=time}" Loaded="timerefresh" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Padding="5,0,5,0"/>
-                                    <Label x:Name="date" Content="00 00 0000" Foreground="{Binding Foreground, ElementName=time}" Loaded="timerefresh" FontSize="26" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center" Padding="5,0,5,-1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <Label x:Name="day" Content="..." Foreground="{Binding Foreground, ElementName=time}" Loaded="timerefresh" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Padding="5,0,5,0"/>
+                                    <Label x:Name="date" Content="00 00 0000" Foreground="{Binding Foreground, ElementName=time}" Loaded="timerefresh" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center" Padding="5,0,5,-1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </Border>
                         </Grid>
                         <Grid x:Name="weatherb" VerticalAlignment="Top" Margin="5,0,5,0">
                             <Border Background="{Binding Background, ElementName=timeb}" BorderBrush="{Binding BorderBrush, ElementName=timeb}" BorderThickness="2" CornerRadius="{Binding CornerRadius, ElementName=settings}" Margin="0,0,0,10">
                                 <Grid>
-                                    <Label x:Name="weather" Content="------------" Foreground="{Binding Foreground, ElementName=time}" Loaded="weather_Loaded" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="90"/>
+                                    <Label x:Name="weather" Content=".." Foreground="{Binding Foreground, ElementName=time}" Loaded="weather_Loaded" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="90"/>
                                     <ItemsControl ItemsSource="{Binding CPUUsagePoints}">
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
@@ -561,8 +561,8 @@
                                         <Label Foreground="{Binding color2}" Content="Netzwerk" Padding="0" Margin="5,3,0,0"/>
                                         <Grid>
                                             <ProgressBar x:Name="netbar" Background="{x:Null}" BorderBrush="{x:Null}" Maximum="1" Foreground="{Binding Foreground, ElementName=cpubar}"/>
-                                            <Label x:Name="netspeed" Foreground="{Binding color2}" HorizontalAlignment="Left"/>
-                                            <Label x:Name="netping" Foreground="{Binding color2}" HorizontalAlignment="Right" Margin="0,0,5,0"/>
+                                            <Label x:Name="netspeed" Foreground="{Binding color2}" HorizontalAlignment="Left" Content="0 Mb/s"/>
+                                            <Label x:Name="netping" Foreground="{Binding color2}" HorizontalAlignment="Right" Margin="0,0,5,0" Content="0 ms"/>
                                             <Label x:Name="netmax" Foreground="{Binding color2}" HorizontalAlignment="Right" Margin="0,0,5,0"/>
 
                                         </Grid>
@@ -584,7 +584,7 @@
                 <Grid>
                     <ScrollViewer x:Name="grid1" HorizontalAlignment="Right" Width="300" VerticalScrollBarVisibility="Auto">
                         <StackPanel x:Name="settingspanel" Margin="10,0,10,0">
-                            <Label Content="Einstellungen" FontSize="25" Margin="-5,1,0,5" HorizontalAlignment="Left" Background="{x:Null}" Foreground="{Binding color2}"/>
+                            <Label Content="Einstellungen" FontSize="25" Margin="5,1,0,5" HorizontalAlignment="Left" Background="{x:Null}" Foreground="{Binding color2}"/>
 
 
                             <Label Content="Ansicht" FontSize="16" Foreground="{Binding color2}" Margin="0,5,0,0"/>
@@ -633,16 +633,16 @@
 
                         </StackPanel>
                     </ScrollViewer>
-                    <Button x:Name="button1" Click="settingsshow" Content="╳" BorderBrush="{x:Null}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderThickness="0" HorizontalAlignment="Right" Margin="0,14,27,0" Width="{Binding ActualHeight, ElementName=button1, Mode=OneWay}" Padding="0,-5,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="button1" Click="settingsshow" Content="╳" BorderBrush="{x:Null}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderThickness="0" HorizontalAlignment="Right" Margin="0,15,30,0" Width="{Binding ActualHeight, ElementName=button1, Mode=OneWay}" Padding="0,-5,0,0" VerticalAlignment="Top"/>
 
                 </Grid>
             </Border>
         </Border>
 
-        <Grid x:Name="titlebartrigger" VerticalAlignment="Top" Height="0" Background="#00696969" MouseEnter="mouseenter"/>
+        <Grid x:Name="titlebartrigger" VerticalAlignment="Top" Height="0" MouseEnter="mouseenter"/>
 
-        <Grid x:Name="titlegrid" VerticalAlignment="Top" MouseLeave="mouseleave_teatlegrid" Background="#598E8E8E">
-            <StackPanel x:Name="stackPanel" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Height="27" Orientation="Horizontal" Margin="0,2,0,1">
+        <Grid x:Name="titlegrid" VerticalAlignment="Top" MouseLeave="mouseleave_teatlegrid">
+            <StackPanel x:Name="stackPanel" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Height="27" Orientation="Horizontal" Margin="-0.4,2,0,1">
                 <Grid x:Name="dragmoveg" Width="{Binding ActualWidth, ElementName=window, Mode=OneWay}" MouseDown="dragmove" Margin="-102,0,0,0" Background="#00848484"/>
                 <Button x:Name="settingsb" Click="settingsshow" BorderBrush="{x:Null}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderThickness="0" FontSize="10" Margin="0,0,0,1" Padding="4,4,4,4" ToolTip="Einstellungen" Foreground="White" Width="48" VerticalAlignment="Bottom" Height="26" Background="#997D7D7D">
                     <Border>

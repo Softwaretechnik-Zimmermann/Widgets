@@ -13,6 +13,7 @@ using System.Windows.Threading;
 using System.Diagnostics;
 using System.Management;
 using System.Threading;
+using System.Runtime.InteropServices;
 
 namespace Launcher
 {
@@ -21,7 +22,29 @@ namespace Launcher
     /// </summary>
     public partial class MainWindow : Window
 	{
-		private string[] QueryCodes = { "q", "zip", "id", };
+        // window order
+
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern int GetWindowLong(IntPtr hWnd, int nIndex);
+
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
+
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter,
+            int X, int Y, int cx, int cy, uint uFlags);
+
+        private const int GWL_EXSTYLE = -20;
+        private const int WS_EX_NOACTIVATE = 0x08000000;
+        private const int WS_EX_TOOLWINDOW = 0x00000080; // Optional: Makes the window not appear in the Alt-Tab menu
+        private static readonly IntPtr HWND_BOTTOM = new IntPtr(1);
+        private const uint SWP_NOSIZE = 0x0001;
+        private const uint SWP_NOMOVE = 0x0002;
+        private const uint SWP_NOACTIVATE = 0x0010;
+
+        // net speedtest
+
+        private string[] QueryCodes = { "q", "zip", "id", };
 		public Dictionary<string,string> GetInternetSpeedInfo()
         {
 			Dictionary<string, string> result = null;
@@ -70,8 +93,9 @@ namespace Launcher
 		public MainWindow()
 		{
 			InitializeComponent();
+            Loaded += window_Loaded;
 
-			maingrid.Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
+            maingrid.Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
 
 			window.Height = Properties.Settings.Default.height;
 			window.Width = Properties.Settings.Default.width;
@@ -1080,6 +1104,17 @@ namespace Launcher
 		}
 
 
+        private void window_Loaded(object sender, RoutedEventArgs e)
+        {
+            var hWnd = new System.Windows.Interop.WindowInteropHelper(this).Handle;
+
+            // Set the window style to include WS_EX_NOACTIVATE
+            int exStyle = GetWindowLong(hWnd, GWL_EXSTYLE);
+            SetWindowLong(hWnd, GWL_EXSTYLE, exStyle | WS_EX_NOACTIVATE | WS_EX_TOOLWINDOW);
+
+            // Position the window behind other applications
+            SetWindowPos(hWnd, HWND_BOTTOM, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_NOACTIVATE);
+        }
     }
 }
 
