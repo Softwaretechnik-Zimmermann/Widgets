@@ -175,7 +175,7 @@ namespace Launcher
 
 			if (Properties.Settings.Default.cornerradius == true)
 			{
-				settings.CornerRadius = new CornerRadius(7);
+				settings.CornerRadius = new CornerRadius(14);
 				roundedb.IsChecked = true;
 			}
 			else
@@ -223,16 +223,18 @@ namespace Launcher
 			if (Properties.Settings.Default.time == true)
 			{
 				timecheck.IsChecked = true;
-				timeg.Height = 83;
+				timeg.Height = 100;
 				timeg.Width = 200;
-			}
-			else
+                timeg.Margin = new Thickness(0, 0, 0, 10);
+            }
+            else
 			{
 				timecheck.IsChecked = false;
 				timeg.Height = 0;
 				timeg.Width = 0;
-			}
-			if (Properties.Settings.Default.showseconds == true)
+                timeg.Margin = new Thickness(0);
+            }
+            if (Properties.Settings.Default.showseconds == true)
 			{
 				timeseconds.IsChecked = true;
 			}
@@ -243,28 +245,33 @@ namespace Launcher
 			if (Properties.Settings.Default.date == true)
 			{
 				datecheck.IsChecked = true;
-				dateb.Height = 68;
+				dateb.Height = 100;
 				dateb.Width = 200;
-			}
-			else
+                dateb.Margin = new Thickness(0, 0, 0, 10);
+
+            }
+            else
 			{
 				datecheck.IsChecked = false;
 				dateb.Height = 0;
 				dateb.Width = 0;
-			}
-			if (Properties.Settings.Default.weather == true)
+                dateb.Margin = new Thickness(0);
+            }
+            if (Properties.Settings.Default.weather == true)
 			{
 				weatherb.Height = 100;
 				weatherb.Width = 200;
 				weathercheck.IsChecked = true;
-			}
-			else
+                weatherb.Margin = new Thickness(0, 0, 0, 10);
+            }
+            else
 			{
 				weatherb.Height = 0;
 				weatherb.Width = 0;
 				weathercheck.IsChecked = false;
-			}
-			if (Properties.Settings.Default.ressources == false)
+                weatherb.Margin = new Thickness(0);
+            }
+            if (Properties.Settings.Default.ressources == false)
 			{
 				cpuborder.Height = 0;
 				cpuborder.Width = 0;
@@ -276,9 +283,9 @@ namespace Launcher
 			}
 			else
 			{
-				cpuborder.Height = 53;
+				cpuborder.Height = 100;
 				cpuborder.Width = 200;
-				ramborder.Height = 53;
+				ramborder.Height = 100;
 				ramborder.Width = 200;
 				cpuborder.Margin = new Thickness(0, 0, 0, 10);
 				ramborder.Margin = new Thickness(0, 0, 0, 10);
@@ -292,7 +299,7 @@ namespace Launcher
 			}
 			else
 			{
-				netborder.Height = 53;
+				netborder.Height = 100;
 				netborder.Width = 200;
 				netcheck.IsChecked = true;
 			}
@@ -341,7 +348,8 @@ namespace Launcher
 		}
 
 
-		private void Minw(object sender, RoutedEventArgs e)
+
+        private void Minw(object sender, RoutedEventArgs e)
 		{
 			window.ShowInTaskbar = true;
 			System.Windows.Application.Current.MainWindow.WindowState = WindowState.Minimized;
@@ -549,15 +557,17 @@ namespace Launcher
 		{
 			if (timecheck.IsChecked == true)
 			{
-				timeg.Height = 83;
+				timeg.Height = 100;
 				timeg.Width = 200;
-				Properties.Settings.Default.time = true;
+                timeg.Margin = new Thickness(0, 0, 0, 10);
+                Properties.Settings.Default.time = true;
 			}
 			else
 			{
 				timeg.Height = 0;
 				timeg.Width = 0;
-				Properties.Settings.Default.time = false;
+                timeg.Margin = new Thickness(0);
+                Properties.Settings.Default.time = false;
 			}
 		}
 
@@ -565,15 +575,17 @@ namespace Launcher
 		{
 			if (datecheck.IsChecked == true)
 			{
-				dateb.Height = 68;
+				dateb.Height = 100;
 				dateb.Width = 200;
-				Properties.Settings.Default.date = true;
+                dateb.Margin = new Thickness(0, 0, 0, 10);
+                Properties.Settings.Default.date = true;
 			}
 			else
 			{
 				dateb.Height = 0;
 				dateb.Width = 0;
-				Properties.Settings.Default.date = false;
+                dateb.Margin = new Thickness(0);
+                Properties.Settings.Default.date = false;
 			}
 		}
 
@@ -583,13 +595,15 @@ namespace Launcher
 			{
 				weatherb.Height = 100;
 				weatherb.Width = 200;
-				Properties.Settings.Default.weather = true;
+                weatherb.Margin = new Thickness(0, 0, 0, 10);
+                Properties.Settings.Default.weather = true;
 			}
 			else
 			{
 				weatherb.Height = 0;
 				weatherb.Width = 0;
-				Properties.Settings.Default.weather = false;
+                weatherb.Margin = new Thickness(0);
+                Properties.Settings.Default.weather = false;
 			}
 		}
 
@@ -657,7 +671,7 @@ namespace Launcher
 		{
 			if (roundedb.IsChecked == true)
 			{
-				settings.CornerRadius = new CornerRadius(7);
+				settings.CornerRadius = new CornerRadius(14);
 				Properties.Settings.Default.cornerradius = true;
 			}
 			else
@@ -685,9 +699,9 @@ namespace Launcher
 			}
 			else
 			{
-				cpuborder.Height = 53;
+				cpuborder.Height = 100;
 				cpuborder.Width = 200;
-				ramborder.Height = 53;
+				ramborder.Height = 100;
 				ramborder.Width = 200;
 				cpuborder.Margin = new Thickness(0, 0, 0, 10);
 				ramborder.Margin = new Thickness(0, 0, 0, 10);
@@ -708,7 +722,7 @@ namespace Launcher
 			{
 				Properties.Settings.Default.netspeed = true;
 				cpuRefresh();
-				netborder.Height = 53;
+				netborder.Height = 100;
 				netborder.Width = 200;
 			}
 
@@ -1115,6 +1129,7 @@ namespace Launcher
             // Position the window behind other applications
             SetWindowPos(hWnd, HWND_BOTTOM, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_NOACTIVATE);
         }
+
     }
 }
 
