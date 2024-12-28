@@ -590,6 +590,7 @@
                         <Label Content="Ansicht" FontSize="16" Foreground="{Binding color2}" Margin="0,5,0,0"/>
                         <Label Content="Symbol Größe" FontSize="10" Margin="10,0,0,0" Foreground="{Binding color2}"/>
                         <Slider x:Name="ansichtslider" Style="{StaticResource Horizontal_Slider}" Margin="10,0,10,0" Foreground="#FF797979" Maximum="100" Minimum="50" ValueChanged="ansichtslider_ValueChanged" Value="70"/>
+                        <CheckBox x:Name="linkactive" Margin="10,10,10,0" Click="linkactive_Click" Content="Links anzeigen" Foreground="{Binding color2}"/>
                         <CheckBox x:Name="roundedb" Margin="10,10,10,0" Click="roundedb_Checked" Content="Abgerundete Ecken" Foreground="{Binding color2}"/>
                         <CheckBox x:Name="foreshow" Margin="10,10,10,0" Click="foreshow_Checked" Content="Immer im Vordergrund" Foreground="{Binding color2}"/>
                         <Button Content="Vertikale/Horizontale Ausrichtung" HorizontalAlignment="Left" Padding="4,0,4,0" Click="verticalswitch" Margin="10,10,0,0"/>

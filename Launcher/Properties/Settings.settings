@@ -27,7 +27,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="apps" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="cl1" Type="System.String" Scope="User">
       <Value Profile="(Default)">FF000000</Value>
@@ -82,6 +82,12 @@
     </Setting>
     <Setting Name="Ping" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="showlinks" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ButtonLinks" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Leer||Leer||Leer||Leer|</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -18,7 +18,7 @@ namespace Launcher
     /// <summary>
     /// Interaktionslogik für DEV.xaml
     /// </summary>
-    public partial class DEV : Page
+    public partial class DEV : Window
     {
         public DEV()
         {

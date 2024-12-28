@@ -59,6 +59,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="LINKS.xaml.cs">
+      <DependentUpon>LINKS.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DEV.xaml.cs">
       <DependentUpon>DEV.xaml</DependentUpon>
     </Compile>
@@ -66,6 +69,10 @@
       <DependentUpon>shutdown.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI.cs" />
+    <Page Include="LINKS.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="DEV.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -135,6 +142,7 @@
     <Resource Include="sleep.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="logo-tr.ico" />
     <Content Include="speedtest.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

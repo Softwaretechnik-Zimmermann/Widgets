@@ -17,11 +17,14 @@ using System.Runtime.InteropServices;
 
 namespace Launcher
 {
+
     /// <summary>
     /// Interaktionslogik für MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
 	{
+		public Window Popupwindow;
+
         // window order
 
         [DllImport("user32.dll", SetLastError = true)]
@@ -132,16 +135,31 @@ namespace Launcher
 			else Properties.Settings.Default.fullscreen = true;
 			maxw();
 			Properties.Settings.Default.fullscreen = b;
-
 			popupgrid.Opacity = 0;
-			if (Properties.Settings.Default.firststart == true)
-			{
-				popup.Content = new DEV();
-				popupgrid.Opacity = 100;
-				popupf.Opacity = 100;
-			}
 
-		}
+            if (Properties.Settings.Default.showlinks == true)
+            {
+                linkactive.IsChecked = true;
+                var wind = new LINKS();
+                Popupwindow = wind;
+                wind.Show();
+
+            }
+            else
+            {
+                linkactive.IsChecked = false;
+
+            }
+
+
+            if (Properties.Settings.Default.firststart == true)
+			{
+                var wind = new DEV();
+                wind.Show();
+
+            }
+
+        }
 
         private async void Loadsettings()
         {
@@ -172,6 +190,9 @@ namespace Launcher
 				obj.color3 = Properties.Settings.Default.cl3;
 				DataContext = obj;
 			}
+
+        
+        
 
 			if (Properties.Settings.Default.cornerradius == true)
 			{
@@ -520,7 +541,34 @@ namespace Launcher
 			InitializeComponent();
 		}
 
-		private void Apps_Checked(object sender, RoutedEventArgs e)
+
+		private void linkactive_Click(object sender, RoutedEventArgs e)
+		{
+			if (linkactive.IsChecked == true)
+			{
+				Properties.Settings.Default.showlinks = true;
+				if (Popupwindow == null)
+				{
+					var wind = new LINKS();
+					Popupwindow = wind;
+					wind.Show();
+				}
+
+            }
+            else
+			{
+                Properties.Settings.Default.showlinks = false;
+                if (Popupwindow != null && Popupwindow is LINKS)
+				{
+					Popupwindow.Close();
+					Popupwindow = null;
+                }
+
+            }
+        }
+
+
+        private void Apps_Checked(object sender, RoutedEventArgs e)
 		{
 			if (systemcheck.IsChecked == true)
 			{
@@ -1129,7 +1177,6 @@ namespace Launcher
             // Position the window behind other applications
             SetWindowPos(hWnd, HWND_BOTTOM, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_NOACTIVATE);
         }
-
     }
 }
 
