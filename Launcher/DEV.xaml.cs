@@ -34,5 +34,11 @@ namespace Launcher
         {
             System.Diagnostics.Process.Start("https://sites.google.com/view/softwaretechnik-zimmermann/downloads/");
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Properties.Settings.Default.firststart = false;
+            Properties.Settings.Default.Save();
+        }
     }
 }

@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Launcher"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="500"
-      Title="DEV" Width="500" Height="300" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="logo-tr.ico">
+      Title="DEV" Width="500" Height="300" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="logo-tr.ico" Closing="Window_Closing">
 
     <Window.Resources>
         <SolidColorBrush x:Key="StandardBorderBrush" Color="#888" />
