@@ -27,6 +27,11 @@ namespace Launcher
         {
             InitializeComponent();
 
+            if (Properties.Settings.Default.darkmode != "false")
+            {
+                background.Background = new SolidColorBrush(Colors.Black);
+            }
+
             edit.Height = 0;
 
             // Load Buttons from Save
@@ -121,7 +126,10 @@ namespace Launcher
                 Properties.Settings.Default.ButtonLinks = Save;
                 Properties.Settings.Default.Save();
 
-
+                link.Text = "https://";
+                if (selectlink.SelectedIndex == 3)
+                selectlink.SelectedIndex += 0;
+                else selectlink.SelectedIndex = 0;   
             }
 
         }
@@ -134,6 +142,11 @@ namespace Launcher
         private void link_TextChanged(object sender, TextChangedEventArgs e)
         {
             link.Text = link.Text.Replace("|", "");
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            MainWindow.linkeditopen = false;
         }
     }
 }

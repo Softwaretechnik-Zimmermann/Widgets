@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Launcher"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="500"
-      Width="500" Height="300" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="logo-tr.ico">
+      Width="500" Height="300" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="logo-tr.ico" Closing="Window_Closing">
 
     <Window.Resources>
         <SolidColorBrush x:Key="StandardBorderBrush" Color="#888" />
@@ -134,7 +134,7 @@
 
     </Window.Resources>
 
-    <Grid Background="White">
+    <Grid x:Name="background" Background="White">
         <Grid Margin="20,20,20,10">
             <TextBlock FontFamily="Microsoft JhengHei UI" Foreground="#FF616161" VerticalAlignment="Top"><Run Language="de-de" Text="Widgets"/><Run Text=" | Softwaretechnik Zimmermann"/></TextBlock>
             <TextBlock Text="Verknüpfungen" FontFamily="Microsoft JhengHei UI" TextAlignment="Center" FontSize="22" Margin="0,31.24,0,0" Foreground="#FF3264A7" VerticalAlignment="Top"/>
@@ -148,7 +148,7 @@
             <Button x:Name="editb" Content="Bearbeiten" Margin="7,5,7,7" Width="100" Click="editb_Click"/>
                 <Border x:Name="edit" CornerRadius="7" Background="#33A0A0A0" Padding="4">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <ComboBox x:Name="selectlink" Margin="3,3,10,3" Width="100">
+                        <ComboBox x:Name="selectlink" Margin="3,3,10,3" Width="100" SelectedIndex="0">
                             <ComboBoxItem>Link 1</ComboBoxItem>
                             <ComboBoxItem>Link 2</ComboBoxItem>
                             <ComboBoxItem>Link 3</ComboBoxItem>
@@ -157,7 +157,7 @@
                         <TextBlock Text="Name:" VerticalAlignment="Center"/>
                         <TextBox x:Name="name" Margin="5" Width="80" VerticalAlignment="Center" TextChanged="name_TextChanged"/>
                         <TextBlock Text="Link:" VerticalAlignment="Center"/>
-                        <TextBox x:Name="link" Margin="5" Width="100" VerticalAlignment="Center" TextChanged="link_TextChanged"/>
+                        <TextBox x:Name="link" Margin="5" Width="100" VerticalAlignment="Center" TextChanged="link_TextChanged" Text="https://"/>
                         <Button Content="Anwenden" VerticalAlignment="Center" Click="apply" FontSize="11" Margin="3"/>
 
 

@@ -14,6 +14,8 @@ using System.Diagnostics;
 using System.Management;
 using System.Threading;
 using System.Runtime.InteropServices;
+using static System.Windows.Forms.LinkLabel;
+using System.Xml.Linq;
 
 namespace Launcher
 {
@@ -140,15 +142,25 @@ namespace Launcher
             if (Properties.Settings.Default.showlinks == true)
             {
                 linkactive.IsChecked = true;
-                var wind = new LINKS();
-                Popupwindow = wind;
-                wind.Show();
-
+                Properties.Settings.Default.showlinks = true;
+                linkborder.Height = 100;
+                linkborder.Width = 200;
+                linkborder.Margin = new Thickness(0, 0, 0, 10);
+                Properties.Settings.Default.date = true;
             }
             else
             {
                 linkactive.IsChecked = false;
-
+                Properties.Settings.Default.showlinks = false;
+                if (Popupwindow != null && Popupwindow is LINKS)
+                {
+                    Popupwindow.Close();
+                    Popupwindow = null;
+                }
+                linkborder.Height = 0;
+                linkborder.Width = 0;
+                linkborder.Margin = new Thickness(0);
+                Properties.Settings.Default.date = false;
             }
 
 
@@ -317,15 +329,17 @@ namespace Launcher
 				netborder.Height = 0;
 				netborder.Width = 0;
 				netcheck.IsChecked = false;
-			}
-			else
+                netborder.Margin = new Thickness(0);
+            }
+            else
 			{
 				netborder.Height = 100;
 				netborder.Width = 200;
 				netcheck.IsChecked = true;
-			}
+                netborder.Margin = new Thickness(0, 0, 0, 10);
+            }
 
-			del = (int)Properties.Settings.Default.refresh;
+            del = (int)Properties.Settings.Default.refresh;
 			refreshtime.Value = Properties.Settings.Default.refresh;
 
 			double c = Properties.Settings.Default.taskscale;
@@ -343,7 +357,25 @@ namespace Launcher
 			if (Properties.Settings.Default.showseconds == true)
 				timeseconds.IsChecked = true;
 			else timeseconds.IsChecked = false;
-		}
+
+
+            // Load Buttons from Save
+            string Load = Properties.Settings.Default.ButtonLinks;
+            var Values = Load.Split('|');
+
+            b1.Content = Values[0];
+            b1.Tag = Values[1];
+            b2.Content = Values[2];
+            b2.Tag = Values[3];
+            b3.Content = Values[4];
+            b3.Tag = Values[5];
+            b4.Content = Values[6];
+            b4.Tag = Values[7];
+
+        }
+		
+
+
 
 		private async void runrefresh()
         {
@@ -549,22 +581,70 @@ namespace Launcher
 				Properties.Settings.Default.showlinks = true;
 				if (Popupwindow == null)
 				{
-					var wind = new LINKS();
-					Popupwindow = wind;
-					wind.Show();
+					Linkedit(sender, e);
 				}
-
-            }
-            else
+				linkborder.Height = 100;
+                linkborder.Width = 200;
+                linkborder.Margin = new Thickness(0, 0, 0, 10);
+				Properties.Settings.Default.date = true;
+			}
+			else
 			{
-                Properties.Settings.Default.showlinks = false;
-                if (Popupwindow != null && Popupwindow is LINKS)
+				Properties.Settings.Default.showlinks = false;
+				if (Popupwindow != null && Popupwindow is LINKS)
 				{
 					Popupwindow.Close();
 					Popupwindow = null;
-                }
+				}
+                linkborder.Height = 0;
+                linkborder.Width = 0;
+                linkborder.Margin = new Thickness(0);
+				Properties.Settings.Default.date = false;
+			}
+        }
+
+		public static bool linkeditopen = false;
+
+        private void Linkedit(object sender, RoutedEventArgs e)
+		{
+			if (linkeditopen == false) {
+				var wind = new LINKS();
+				Popupwindow = wind;
+				wind.Show();
+				linkeditopen = true;
+			}
+        }
+
+        private void b_Click(object sender, RoutedEventArgs e)
+        {
+            var btn = (System.Windows.Controls.Button)sender;
+            try
+            {
+
+                System.Diagnostics.Process.Start((string)btn.Tag);
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show("Ungültiger Link: \n" + ex, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
+        }
+
+
+        public void Linkrefresh()
+        {
+            // Load Buttons from Save
+            string Load = Properties.Settings.Default.ButtonLinks;
+            var Values = Load.Split('|');
+			
+            b1.Content = Values[0];
+            b1.Tag = Values[1];
+            b2.Content = Values[2];
+            b2.Tag = Values[3];
+            b3.Content = Values[4];
+            b3.Tag = Values[5];
+            b4.Content = Values[6];
+            b4.Tag = Values[7];
         }
 
 
@@ -765,16 +845,18 @@ namespace Launcher
 				Properties.Settings.Default.netspeed = false;
 				netborder.Height = 0;
 				netborder.Width = 0;
-			}
-			else
+                netborder.Margin = new Thickness(0, 0, 0, 0);
+            }
+            else
 			{
 				Properties.Settings.Default.netspeed = true;
 				cpuRefresh();
 				netborder.Height = 100;
 				netborder.Width = 200;
-			}
+                netborder.Margin = new Thickness(0, 0, 0, 10);
+            }
 
-		}
+        }
 
 
 		private void light(object sender, RoutedEventArgs e)

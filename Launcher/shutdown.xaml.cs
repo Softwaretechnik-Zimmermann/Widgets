@@ -16,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrayNotify;
 
 namespace Launcher
 {
@@ -33,6 +34,11 @@ namespace Launcher
         public shutdown()
         {
             InitializeComponent();
+            if (Properties.Settings.Default.darkmode != "false")
+            {
+                background.Background = new SolidColorBrush(Colors.Black);
+            }
+
         }
 
         private void Shutdown(object sender, RoutedEventArgs e)
