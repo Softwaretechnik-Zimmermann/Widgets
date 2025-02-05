@@ -29,7 +29,7 @@ namespace Launcher
 
             if (Properties.Settings.Default.darkmode != "false")
             {
-                background.Background = new SolidColorBrush(Colors.Black);
+                background.Background = new SolidColorBrush(Color.FromRgb(20,20,20));
             }
 
             edit.Height = 0;
@@ -82,7 +82,7 @@ namespace Launcher
             {
 
                 edit.Height = 0;
-
+                MainWindow mainWin = System.Windows.Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
 
                 switch (selectlink.SelectedIndex)
                 {
@@ -90,6 +90,7 @@ namespace Launcher
                         {
                             b1.Content = name.Text;
                             b1.Tag = link.Text;
+                            mainWin.UpdateButton1(name.Text, link.Text);
                         }
                         break;
 
@@ -97,6 +98,7 @@ namespace Launcher
                         {
                             b2.Content = name.Text;
                             b2.Tag = link.Text;
+                            mainWin.UpdateButton2(name.Text, link.Text);
                         }
                         break;
 
@@ -104,6 +106,7 @@ namespace Launcher
                         {
                             b3.Content = name.Text;
                             b3.Tag = link.Text;
+                            mainWin.UpdateButton3(name.Text, link.Text);
                         }
                         break;
 
@@ -111,6 +114,7 @@ namespace Launcher
                         {
                             b4.Content = name.Text;
                             b4.Tag = link.Text;
+                            mainWin.UpdateButton4(name.Text, link.Text);
                         }
                         break;
 

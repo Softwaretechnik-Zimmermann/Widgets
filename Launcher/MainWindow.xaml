@@ -482,45 +482,45 @@
             <StackPanel x:Name="stackpanel" Orientation="Horizontal" Margin="0,15,0,0" HorizontalAlignment="Right" ScrollViewer.VerticalScrollBarVisibility="Auto">
                 <ScrollViewer x:Name="systemscroll" Margin="20,0,10,0" VerticalScrollBarVisibility="Auto" VerticalAlignment="Top">
                     <StackPanel x:Name="system" Orientation="Vertical" Width="130" >
-                        <Label Foreground="White" Content="System" HorizontalContentAlignment="Center" FontSize="16" Margin="0,0,0,10">
+                        <Label x:Name="Labelheadline" Foreground="White" Content="System" HorizontalContentAlignment="Center" FontSize="16" Margin="0,0,0,10">
                             <Label.Effect>
                                 <DropShadowEffect/>
                             </Label.Effect>
                         </Label>
-                        <Button x:Name="explorer2" Style="{StaticResource buttonstyle2}" Width="110" Height="{Binding Value, ElementName=ansichtslider}" Margin="5" Click="explorero" Background="#02000000" BorderBrush="{x:Null}" Foreground="#FF545454">
+                        <Button x:Name="explorer2" Style="{StaticResource buttonstyle2}" Width="{Binding Value, ElementName=ansichtslider}" Height="{Binding Value, ElementName=ansichtslider}" Margin="5" Click="explorero" Background="#02000000" BorderBrush="{x:Null}" Foreground="#FF545454">
                             <Grid>
                                 <Image x:Name="image0" Source="folder.png" Margin="0,0,0,18"/>
-                                <Label VerticalAlignment="Bottom" Content="Explorer" Foreground="White" FontSize="12" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" Padding="0,0,0,0">
+                                <Label x:Name="label" VerticalAlignment="Bottom" Content="Explorer" Foreground="White" FontSize="12" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" Padding="0,0,0,0">
                                     <Label.Effect>
                                         <DropShadowEffect/>
                                     </Label.Effect>
                                 </Label>
                             </Grid>
                         </Button>
-                        <Button Style="{StaticResource buttonstyle2}" Width="{Binding ActualWidth, ElementName=explorer, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=explorer, Mode=OneWay}" Margin="{Binding Margin, ElementName=explorer}" Click="cmdo" Background="#02000000" BorderBrush="{x:Null}" Foreground="#FF545454">
+                        <Button Style="{StaticResource buttonstyle2}" Width="{Binding ActualWidth, ElementName=explorer2, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=explorer2, Mode=OneWay}" Margin="{Binding Margin, ElementName=explorer}" Click="cmdo" Background="#02000000" BorderBrush="{x:Null}" Foreground="#FF545454">
                             <Grid>
-                                <Image Source="cmd.png" Margin="0,0,0,10" Width="{Binding ActualWidth, ElementName=image, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=image, Mode=OneWay}"/>
-                                <Label VerticalAlignment="Bottom" Content="Cmd" Foreground="White" FontSize="12" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" Padding="0,0,0,0">
+                                <Image Source="cmd.png" Margin="0,0,0,10" Width="{Binding ActualWidth, ElementName=image0, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=image0, Mode=OneWay}"/>
+                                <Label x:Name="label1" VerticalAlignment="Bottom" Content="Cmd" Foreground="White" FontSize="{Binding FontSize, ElementName=label}" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" Padding="0,0,0,0">
                                     <Label.Effect>
                                         <DropShadowEffect/>
                                     </Label.Effect>
                                 </Label>
                             </Grid>
                         </Button>
-                        <Button Style="{StaticResource buttonstyle2}" Width="{Binding ActualWidth, ElementName=explorer, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=explorer, Mode=OneWay}" Margin="{Binding Margin, ElementName=explorer}" Click="editoro" Background="#02000000" BorderBrush="{x:Null}" Foreground="#FF545454">
+                        <Button Style="{StaticResource buttonstyle2}" Width="{Binding ActualWidth, ElementName=explorer2, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=explorer2, Mode=OneWay}" Margin="{Binding Margin, ElementName=explorer}" Click="editoro" Background="#02000000" BorderBrush="{x:Null}" Foreground="#FF545454">
                             <Grid>
-                                <Image Source="notepad.png" Margin="0,-10,0,10" Width="{Binding ActualWidth, ElementName=image, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=image, Mode=OneWay}" VerticalAlignment="Top"/>
-                                <Label VerticalAlignment="Bottom" Content="Editor" Foreground="White" FontSize="12" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" Padding="0,0,0,0" Margin="0,0,0,-8">
+                                <Image Source="notepad.png" Margin="0,-10,0,10" Width="{Binding ActualWidth, ElementName=image0, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=image0, Mode=OneWay}" VerticalAlignment="Top"/>
+                                <Label VerticalAlignment="Bottom" Content="Editor" Foreground="White" FontSize="{Binding FontSize, ElementName=label}" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" Padding="0,0,0,0" Margin="0,0,0,-8">
                                     <Label.Effect>
                                         <DropShadowEffect/>
                                     </Label.Effect>
                                 </Label>
                             </Grid>
                         </Button>
-                        <Button Style="{StaticResource buttonstyle2}" Width="{Binding ActualWidth, ElementName=explorer, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=explorer, Mode=OneWay}" Margin="{Binding Margin, ElementName=explorer}" Click="calco" Background="#02000000" BorderBrush="{x:Null}" Foreground="#FF545454">
+                        <Button Style="{StaticResource buttonstyle2}" Width="{Binding ActualWidth, ElementName=explorer2, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=explorer2, Mode=OneWay}" Margin="{Binding Margin, ElementName=explorer}" Click="calco" Background="#02000000" BorderBrush="{x:Null}" Foreground="#FF545454">
                             <Grid>
-                                <Image Source="calc.png" Margin="0,-10,0,10" Width="{Binding ActualWidth, ElementName=image, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=image, Mode=OneWay}" VerticalAlignment="Top"/>
-                                <Label VerticalAlignment="Bottom" Content="Rechner" Foreground="White" FontSize="12" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" Padding="0,0,0,0" Margin="0,0,0,-8">
+                                <Image Source="calc.png" Margin="0,-10,0,10" Width="{Binding ActualWidth, ElementName=image0, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=image0, Mode=OneWay}" VerticalAlignment="Top"/>
+                                <Label VerticalAlignment="Bottom" Content="Rechner" Foreground="White" FontSize="{Binding FontSize, ElementName=label}" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" Padding="0,0,0,0" Margin="0,0,0,-8">
                                     <Label.Effect>
                                         <DropShadowEffect/>
                                     </Label.Effect>
@@ -530,19 +530,19 @@
 
 
                         <Rectangle Height="15"/>
-                        <Label Foreground="White" Content="Widgets" HorizontalContentAlignment="Center" FontSize="16" Margin="0,0,0,10">
+                        <Label Foreground="White" Content="Widgets" HorizontalContentAlignment="Center" FontSize="{Binding FontSize, ElementName=Labelheadline}" Margin="0,0,0,10">
                             <Label.Effect>
                                 <DropShadowEffect/>
                             </Label.Effect>
                         </Label>
-                        <Button Style="{StaticResource buttonstyle2}" x:Name="settingsicon2" Width="{Binding ActualWidth, ElementName=explorer, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=explorer, Mode=OneWay}" Margin="5" Click="settingsshow" Background="#02000000" BorderBrush="{x:Null}" Foreground="#FF545454" VerticalAlignment="Top">
+                        <Button Style="{StaticResource buttonstyle2}" x:Name="settingsicon2" Width="{Binding ActualWidth, ElementName=explorer2, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=explorer2, Mode=OneWay}" Margin="5" Click="settingsshow" Background="#02000000" BorderBrush="{x:Null}" Foreground="#FF545454" VerticalAlignment="Top">
                             <Grid>
-                                <Image x:Name="image1" Source="settings.png"  Margin="0,-5,0,15" Width="{Binding ActualWidth, ElementName=image, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=image, Mode=OneWay}" VerticalAlignment="Top">
+                                <Image x:Name="image1" Source="settings.png"  Margin="0,-5,0,15" Width="{Binding ActualWidth, ElementName=image0, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=image0, Mode=OneWay}" VerticalAlignment="Top">
                                     <Image.Effect>
                                         <DropShadowEffect/>
                                     </Image.Effect>
                                 </Image>
-                                <Label VerticalAlignment="Bottom" Content="Einstellungen" Foreground="White" FontSize="12" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" Padding="0,0,0,0" Margin="0,0,0,-3">
+                                <Label VerticalAlignment="Bottom" Content="Einstellungen" Foreground="White" FontSize="{Binding FontSize, ElementName=label}" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" Padding="0,0,0,0" Margin="0,0,0,-3">
                                     <Label.Effect>
                                         <DropShadowEffect/>
                                     </Label.Effect>
@@ -611,7 +611,7 @@
                                         <Label Foreground="{Binding color2}" Content="Arbeitsspeicher" Padding="0.1" HorizontalAlignment="Center" FontSize="20"/>
                                         <Grid Margin="0,10,0,0" >
                                             <ProgressBar x:Name="rambar" Background="{Binding Background, ElementName=cpubar}" BorderBrush="{x:Null}" Foreground="{Binding Foreground, ElementName=cpubar}" Width="180" Height="33"/>
-                                            <Label x:Name="ramusage" Content="0MB" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="11,0,0,0" Foreground="White"/>
+                                            <Label x:Name="ramusage" Content="0GB" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="11,0,0,0" Foreground="White"/>
                                             <Label x:Name="maxram" HorizontalAlignment="Right" Content="0GB" VerticalAlignment="Center" Margin="0,0,11,0" Foreground="White"/>
                                         </Grid>
                                     </StackPanel>
@@ -665,8 +665,6 @@
                         <Label Content="Ansicht" FontSize="16" Foreground="{Binding color2}" Margin="0,5,0,0"/>
                         <Label Content="Symbol Größe" FontSize="10" Margin="10,0,0,0" Foreground="{Binding color2}"/>
                         <Slider x:Name="ansichtslider" Style="{StaticResource Horizontal_Slider}" Margin="10,0,10,0" Foreground="#FF797979" Maximum="100" Minimum="50" ValueChanged="ansichtslider_ValueChanged" Value="70"/>
-                        <CheckBox x:Name="linkactive" Margin="10,10,10,0" Click="linkactive_Click" Content="Links anzeigen" Foreground="{Binding color2}"/>
-                        <Button Content="Links Bearbeiten" HorizontalAlignment="Left" Padding="4,0,4,0" Click="Linkedit" Margin="10,10,0,0"/>
                         <CheckBox x:Name="roundedb" Margin="10,10,10,0" Click="roundedb_Checked" Content="Abgerundete Ecken" Foreground="{Binding color2}"/>
                         <CheckBox x:Name="foreshow" Margin="10,10,10,0" Click="foreshow_Checked" Content="Immer im Vordergrund" Foreground="{Binding color2}"/>
                         <!--Button Content="Vertikale/Horizontale Ausrichtung" HorizontalAlignment="Left" Padding="4,0,4,0" Click="verticalswitch" Margin="10,10,0,0"/-->
@@ -687,9 +685,13 @@
                         <CheckBox x:Name="datecheck" Margin="10,5,0,5" Content="Datum" Click="datecheck_Checked" Foreground="{Binding color2}" IsChecked="True" />
                         <CheckBox x:Name="weathercheck" Margin="10,5,0,5" Content="Wetter" Click="weathercheck_Checked" Foreground="{Binding color2}" IsChecked="True" />
                         <CheckBox x:Name="rescheck" Margin="10,5,0,5" Content="CPU / RAM Ressurcen" Click="rescheck_Checked" Foreground="{Binding color2}" IsChecked="True"/>
-                        <CheckBox x:Name="netcheck" Margin="10,5,0,15" Content="Netzwerk Geschwindigkeit" Click="netcheck_Click" Foreground="{Binding color2}" IsChecked="True"/>
                         <TextBlock Text="Aktualisierungsgeschwindigkeit" Foreground="{Binding color2}" Margin="20,0,10,0"/>
                         <Slider x:Name="refreshtime" Style="{StaticResource Horizontal_Slider}" Margin="30,5,20,10" IsDirectionReversed="True" Minimum="500" Maximum="2000" Value="1800" ValueChanged="refreshtime_ValueChanged"/>
+
+                        <CheckBox x:Name="netcheck" Margin="10,5,0,0" Content="Netzwerk Geschwindigkeit" Click="netcheck_Click" Foreground="{Binding color2}" IsChecked="True"/>
+                        <CheckBox x:Name="linkactive" Margin="10,10,10,0" Click="linkactive_Click" Content="Links anzeigen" Foreground="{Binding color2}"/>
+                        <Button Content="Links Bearbeiten" HorizontalAlignment="Left" Padding="4,0,4,0" Click="Linkedit" Margin="10,10,0,15"/>
+
 
                         <Rectangle Height="1" Fill="#CC545454"/>
 

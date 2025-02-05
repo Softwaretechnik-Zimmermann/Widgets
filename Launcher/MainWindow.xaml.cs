@@ -47,7 +47,6 @@ namespace Launcher
         private const uint SWP_NOMOVE = 0x0002;
         private const uint SWP_NOACTIVATE = 0x0010;
 
-        // net speedtest
 
         private string[] QueryCodes = { "q", "zip", "id", };
 		public Dictionary<string,string> GetInternetSpeedInfo()
@@ -139,29 +138,6 @@ namespace Launcher
 			Properties.Settings.Default.fullscreen = b;
 			popupgrid.Opacity = 0;
 
-            if (Properties.Settings.Default.showlinks == true)
-            {
-                linkactive.IsChecked = true;
-                Properties.Settings.Default.showlinks = true;
-                linkborder.Height = 100;
-                linkborder.Width = 200;
-                linkborder.Margin = new Thickness(0, 0, 0, 10);
-                Properties.Settings.Default.date = true;
-            }
-            else
-            {
-                linkactive.IsChecked = false;
-                Properties.Settings.Default.showlinks = false;
-                if (Popupwindow != null && Popupwindow is LINKS)
-                {
-                    Popupwindow.Close();
-                    Popupwindow = null;
-                }
-                linkborder.Height = 0;
-                linkborder.Width = 0;
-                linkborder.Margin = new Thickness(0);
-                Properties.Settings.Default.date = false;
-            }
 
 
             if (Properties.Settings.Default.firststart == true)
@@ -172,6 +148,7 @@ namespace Launcher
             }
 
         }
+        // Load Settings ==================================================================================>
 
         private async void Loadsettings()
         {
@@ -339,6 +316,30 @@ namespace Launcher
                 netborder.Margin = new Thickness(0, 0, 0, 10);
             }
 
+            if (Properties.Settings.Default.showlinks == true)
+            {
+                linkactive.IsChecked = true;
+                Properties.Settings.Default.showlinks = true;
+                linkborder.Height = 100;
+                linkborder.Width = 200;
+                linkborder.Margin = new Thickness(0, 0, 0, 10);
+                Properties.Settings.Default.date = true;
+            }
+            else
+            {
+                linkactive.IsChecked = false;
+                Properties.Settings.Default.showlinks = false;
+                if (Popupwindow != null && Popupwindow is LINKS)
+                {
+                    Popupwindow.Close();
+                    Popupwindow = null;
+                }
+                linkborder.Height = 0;
+                linkborder.Width = 0;
+                linkborder.Margin = new Thickness(0);
+                Properties.Settings.Default.date = false;
+            }
+
             del = (int)Properties.Settings.Default.refresh;
 			refreshtime.Value = Properties.Settings.Default.refresh;
 
@@ -383,7 +384,10 @@ namespace Launcher
 			cpuRefresh();
 		}
 
-		private void windowkeydown(object sender, System.Windows.Input.KeyEventArgs e)
+        // Window ==================================================================================>
+
+
+        private void windowkeydown(object sender, System.Windows.Input.KeyEventArgs e)
 		{
 			if (Keyboard.IsKeyDown(Key.S))
 			{
@@ -492,11 +496,13 @@ namespace Launcher
 
 		private void ansichtslider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
 		{
-		}
+            label.FontSize = ansichtslider.Value * 0.15;
+            Labelheadline.FontSize = ansichtslider.Value * 0.3;
+        }
 
 
 
-		private void dragmove(object sender, MouseButtonEventArgs e)
+        private void dragmove(object sender, MouseButtonEventArgs e)
 		{
 			if (window.WindowState == WindowState.Normal)
 			{
@@ -550,7 +556,7 @@ namespace Launcher
 
 		private void ress(object sender, RoutedEventArgs e)
 		{
-			ressb.Content = "Neustart der App erforderlich";
+			//ressb.Content = "Neustart der App erforderlich";
 			Properties.Settings.Default.Reset();
 			// Zoom
 			ansichtslider.Value = 100;
@@ -570,11 +576,14 @@ namespace Launcher
 			maingrid.Margin = new Thickness(0, 0, 0, c);
 			taskbarslider.Value = c;
 
+			runrefresh();
+			Loadsettings();
 			InitializeComponent();
 		}
+		
+        // Links =====================================================================================>
 
-
-		private void linkactive_Click(object sender, RoutedEventArgs e)
+        private void linkactive_Click(object sender, RoutedEventArgs e)
 		{
 			if (linkactive.IsChecked == true)
 			{
@@ -615,6 +624,28 @@ namespace Launcher
 			}
         }
 
+        public void UpdateButton1(string newContent, object newTag) 
+		{ 
+			b1.Content = newContent;
+            b1.Tag = newTag;
+        }
+        public void UpdateButton2(string newContent, object newTag)
+        {
+            b2.Content = newContent;
+            b2.Tag = newTag;
+        }
+        public void UpdateButton3(string newContent, object newTag)
+        {
+            b3.Content = newContent;
+            b3.Tag = newTag;
+        }
+        public void UpdateButton4(string newContent, object newTag)
+        {
+            b4.Content = newContent;
+            b4.Tag = newTag;
+        }
+
+
         private void b_Click(object sender, RoutedEventArgs e)
         {
             var btn = (System.Windows.Controls.Button)sender;
@@ -648,26 +679,10 @@ namespace Launcher
         }
 
 
-        private void Apps_Checked(object sender, RoutedEventArgs e)
-		{
-			if (systemcheck.IsChecked == true)
-			{
-				system.Opacity = 100;
-				Properties.Settings.Default.apps = true;
-				systemscroll.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
-				system.IsEnabled = true;
-			}
-			else
-			{
-				system.Opacity = 0;
-				Properties.Settings.Default.apps = false;
-				systemscroll.VerticalScrollBarVisibility = ScrollBarVisibility.Disabled;
-				system.IsEnabled = false;
-			}
-		}
+        // Time ==================================================================================>
 
 
-		private void timerefresh(object sender, RoutedEventArgs e)
+        private void timerefresh(object sender, RoutedEventArgs e)
 		{
 			// sekunden werden übersprungen
 			DispatcherTimer timer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
@@ -681,7 +696,10 @@ namespace Launcher
 			}, this.Dispatcher);
 		}
 
-		private void timecheck_Checked(object sender, RoutedEventArgs e)
+        // CheckBoxes and Settings ================================================================>
+
+
+        private void timecheck_Checked(object sender, RoutedEventArgs e)
 		{
 			if (timecheck.IsChecked == true)
 			{
@@ -699,7 +717,26 @@ namespace Launcher
 			}
 		}
 
-		private void datecheck_Checked(object sender, RoutedEventArgs e)
+        private void Apps_Checked(object sender, RoutedEventArgs e)
+        {
+            if (systemcheck.IsChecked == true)
+            {
+                system.Opacity = 100;
+                Properties.Settings.Default.apps = true;
+                systemscroll.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+                system.IsEnabled = true;
+            }
+            else
+            {
+                system.Opacity = 0;
+                Properties.Settings.Default.apps = false;
+                systemscroll.VerticalScrollBarVisibility = ScrollBarVisibility.Disabled;
+                system.IsEnabled = false;
+            }
+        }
+
+
+        private void datecheck_Checked(object sender, RoutedEventArgs e)
 		{
 			if (datecheck.IsChecked == true)
 			{
@@ -858,8 +895,10 @@ namespace Launcher
 
         }
 
+        // Color Themes ==================================================================================>
 
-		private void light(object sender, RoutedEventArgs e)
+
+        private void light(object sender, RoutedEventArgs e)
 		{
 			UI obj = new UI();
 			obj.color1 = "#99CCCCCC";
@@ -879,7 +918,7 @@ namespace Launcher
 			Properties.Settings.Default.darkmode = "true";
 		}
 
-		// Ressurcen CPU RAM =========================================================>
+		// Ressurcen CPU RAM ==============================================================================>
 		public void cpuRefresh()
 		{
 			_ = getResUsageAsync();
@@ -895,7 +934,9 @@ namespace Launcher
 
 			ramCounter = new PerformanceCounter("Memory", "Available MBytes");
 
-			ramusage.Content = rambar.Maximum - ramCounter.NextValue() + "MB";
+            double j = Math.Round(rambar.Maximum - ramCounter.NextValue());
+			j = j/1000;
+            ramusage.Content = j + "GB";
 			rambar.Value = rambar.Maximum - ramCounter.NextValue();
 
 			await Task.Delay(del / 3);
@@ -968,7 +1009,8 @@ namespace Launcher
 			Properties.Settings.Default.firststart = false;
 		}
 
-		// Internet Geschwindigkeit ================================>
+        // Internet Geschwindigkeit ===========================================================================================>
+
 		private void netspeedcheck(object sender, EventArgs e)
 		{
 			//netspeed.Content = "Down: " + Properties.Settings.Default.Download + " Mb/s Up:" + Properties.Settings.Default.Download + " Mb/s";
@@ -1222,6 +1264,8 @@ namespace Launcher
 			if (window.WindowState != WindowState.Minimized)
 				window.ShowInTaskbar = false;
         }
+
+        // Closing ==================================================================================>
 
         private void windowclose(object sender, System.ComponentModel.CancelEventArgs e)
         {

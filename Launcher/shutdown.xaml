@@ -50,7 +50,7 @@
         </LinearGradientBrush>
 
         <Style TargetType="{x:Type Button}">
-            <Setter Property="Background" Value="#4CFFFFFF" />
+            <Setter Property="Background" Value="#4C585858" />
             <Setter Property="Foreground" Value="#FF2D2D2D" />
             <Setter Property="FontSize" Value="15" />
             <Setter Property="SnapsToDevicePixels" Value="True" />
@@ -131,7 +131,7 @@
     </Page.Resources>
 
     <Grid x:Name="background" Background="White">
-        <Border Background="#19A7A7A7" Margin="3,42,3,59" CornerRadius="13"/>
+        <Border Background="#4C8A8A8A" Margin="3,42,3,59" CornerRadius="13"/>
         <StackPanel>
             <TextBlock Text="Windows herunterfahren" Margin="10,11,0,0"/>
             <TextBlock Text="Wählen Sie einen Vorgang aus" Margin="0,33,0,0" HorizontalAlignment="Center" FontSize="14"/>

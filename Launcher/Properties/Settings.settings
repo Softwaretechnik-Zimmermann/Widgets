@@ -72,7 +72,7 @@
       <Value Profile="(Default)">1800</Value>
     </Setting>
     <Setting Name="netspeed" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="Download" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
@@ -84,7 +84,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="showlinks" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="ButtonLinks" Type="System.String" Scope="User">
       <Value Profile="(Default)">Leer||Leer||Leer||Leer|</Value>
