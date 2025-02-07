@@ -146,7 +146,7 @@
                 <Button x:Name="b4" Click="b_Click" Content="..." Margin="5" Height="50" Width="100"/>
             </StackPanel>
             <Button x:Name="editb" Content="Bearbeiten" Margin="7,5,7,7" Width="100" Click="editb_Click"/>
-                <Border x:Name="edit" CornerRadius="9" Background="#66A0A0A0" Padding="6">
+                <Border x:Name="edit" CornerRadius="9" Background="#4CA0A0A0" Padding="6">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <ComboBox x:Name="selectlink" Margin="3,3,12,3" SelectedIndex="0" BorderBrush="#4CACACAC" Width="79" Height="23">
                             <ComboBox.Background>

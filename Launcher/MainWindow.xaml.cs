@@ -47,57 +47,12 @@ namespace Launcher
         private const uint SWP_NOMOVE = 0x0002;
         private const uint SWP_NOACTIVATE = 0x0010;
 
-
-        private string[] QueryCodes = { "q", "zip", "id", };
-		public Dictionary<string,string> GetInternetSpeedInfo()
-        {
-			Dictionary<string, string> result = null;
-			Process process = null;
-			try
-            {
-				process = new Process();
-				result = new Dictionary<string, string>();
-
-				process.StartInfo.UseShellExecute = false;
-				process.StartInfo.RedirectStandardOutput = true;
-				process.StartInfo.CreateNoWindow = true;
-				process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-
-				process.StartInfo.FileName = "speedtest.exe";
-
-				process.Start();
-				string output = process.StandardOutput.ReadToEnd();
-				process.WaitForExit();
-
-				List<string> list_output = output.Split('\n').ToList();
-
-				result["Server"] = list_output[3].Split(':')[1].Trim();
-				result["ISP"] = list_output[4].Split(':')[1].Trim();
-				result["Latency"] = list_output[5].Split(':')[1].Trim();
-				result["Download"] = list_output[6].Replace("Download:", "").Trim();
-				result["Upload"] = list_output[7].Replace("Upload:", "").Trim();
-				result["Packetloss"] = list_output[8].Split(':')[1].Trim();
-
-
-				netspeed.Content = result["Download"] + " Mb/s";
-				netping.Content = result["Latency"] + " ms";
-			}
-			catch (Exception)
-            {
-
-				throw;
-            }
-			finally
-            {
-				if (process != null) process.Dispose();
-            }
-			return result;
-        }
-
 		public MainWindow()
 		{
 			InitializeComponent();
             Loaded += window_Loaded;
+
+            Loadsettings();
 
             maingrid.Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
 
@@ -109,10 +64,7 @@ namespace Launcher
 
 			web = 1;
 
-
-			runrefresh();
-			Loadsettings();
-
+            runrefresh();
 
 			// get max ram
 			System.Management.ObjectQuery wql = new System.Management.ObjectQuery("SELECT * FROM Win32_OperatingSystem");
@@ -651,13 +603,13 @@ namespace Launcher
             var btn = (System.Windows.Controls.Button)sender;
             try
             {
-
                 System.Diagnostics.Process.Start((string)btn.Tag);
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show("Ungültiger Link: \n" + ex, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+				//System.Windows.Forms.MessageBox.Show("Ungültiger Link: \n" + ex, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				Popup p = new Popup(ex.ToString(), "OK", "Link konnte nicht geöffnet werden");
+				p.Show();
             }
         }
 
@@ -887,10 +839,10 @@ namespace Launcher
             else
 			{
 				Properties.Settings.Default.netspeed = true;
-				cpuRefresh();
 				netborder.Height = 100;
 				netborder.Width = 200;
                 netborder.Margin = new Thickness(0, 0, 0, 10);
+                cpuRefresh();
             }
 
         }
@@ -921,7 +873,16 @@ namespace Launcher
 		// Ressurcen CPU RAM ==============================================================================>
 		public void cpuRefresh()
 		{
-			_ = getResUsageAsync();
+			// trigger netspeedtest
+			if (Properties.Settings.Default.netspeed)
+			{
+				_ = CheckSpeedWebClientAsync();
+			}
+            // trigger CPU/RAM monitoring
+            if (Properties.Settings.Default.ressources)
+			{
+				_ = getResUsageAsync();
+			}
 		}
 
 		int web;
@@ -951,29 +912,29 @@ namespace Launcher
 			int i = (int)Math.Round(d);
 
 			cpuusage.Content = i + "%";
-			cpubar.Value = i;
-			await Task.Delay(del / 3);
-
-			// trigger Netzwerkgeschwindigkeit
-			if (web == 1)
+			if (i < 5)
 			{
-				CheckSpeedWebClient();
-				web += 1;
+				if (i == 0)
+				{
+					cpubar.Value = 0;
+				}
+				else
+				{
+					cpubar.Value = 5;
+				}
 			}
 			else
 			{
-				if (web != 20)
-					web += 1;
-				else web = 1;
+				cpubar.Value = i;
 			}
-
-			if (netspeed.Content == null)
-				netspeed.Content = "wird geladen...";
+                await Task.Delay(del / 3);
 
 			await Task.Delay(del/3);
 
-			_ = getResUsageAsync();
-
+			if (Properties.Settings.Default.ressources)
+			{
+				_ = getResUsageAsync();
+			}
 		}
 
 		private void tbmin(object sender, RoutedEventArgs e)
@@ -1011,16 +972,64 @@ namespace Launcher
 
         // Internet Geschwindigkeit ===========================================================================================>
 
-		private void netspeedcheck(object sender, EventArgs e)
+
+        private string[] QueryCodes = { "q", "zip", "id", };
+        public Dictionary<string, string> GetInternetSpeedInfo()
+        {
+            Dictionary<string, string> result = null;
+            Process process = null;
+            try
+            {
+                process = new Process();
+                result = new Dictionary<string, string>();
+
+                process.StartInfo.UseShellExecute = false;
+                process.StartInfo.RedirectStandardOutput = true;
+                process.StartInfo.CreateNoWindow = true;
+                process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+
+                process.StartInfo.FileName = "speedtest.exe";
+
+                process.Start();
+                string output = process.StandardOutput.ReadToEnd();
+                process.WaitForExit();
+
+                List<string> list_output = output.Split('\n').ToList();
+
+                result["Server"] = list_output[3].Split(':')[1].Trim();
+                result["ISP"] = list_output[4].Split(':')[1].Trim();
+                result["Latency"] = list_output[5].Split(':')[1].Trim();
+                result["Download"] = list_output[6].Replace("Download:", "").Trim();
+                result["Upload"] = list_output[7].Replace("Upload:", "").Trim();
+                result["Packetloss"] = list_output[8].Split(':')[1].Trim();
+
+
+                netspeed.Content = result["Download"] + " Mb/s";
+               // netping.Content = result["Latency"] + " ms";
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                if (process != null) process.Dispose();
+            }
+            return result;
+        }
+
+
+        private void netspeedcheck(object sender, EventArgs e)
 		{
 			//netspeed.Content = "Down: " + Properties.Settings.Default.Download + " Mb/s Up:" + Properties.Settings.Default.Download + " Mb/s";
 			//netping.Content = Properties.Settings.Default.Ping + " ms";
 
 		}
 
-		public async void CheckSpeedWebClient()
+		public async Task CheckSpeedWebClientAsync()
 		{
-			Thread thread = null;
+            Thread thread = null;
 			Process process = null;
 			String output = string.Empty;
 			thread = new Thread(new ThreadStart(() =>
@@ -1042,25 +1051,22 @@ namespace Launcher
 					output = output.Split(new string[] { "Upload:" }, StringSplitOptions.None)[0].Trim();
 					this.DownloadSpeed = output;
 				}
-				
+
 				catch (Exception)
 				{
 
-					
+
 				}
 				finally
 				{
 					if (process != null) process.Dispose();
 				}
-			
+
 			}
 			));
-			thread.Start();
+            //thread.Start();
 
-			netspeed.Content = DownloadSpeed;
-
-
-			netping.Content = Properties.Settings.Default.Ping;
+            //netspeed.Content = DownloadSpeed;
 			try
 			{
 				await Task.Delay(del / 4);
@@ -1077,11 +1083,12 @@ namespace Launcher
 				return;
 			}
 			finally
-			{ 
+			{
 				try
 				{
-					double[] speeds = new double[5];
-					for (int i = 0; i < 5; i++)
+					int max = 1;
+					double[] speeds = new double[max];
+					for (int i = 0; i < max; i++)
 					{
 						await Task.Delay(del / 4);
 						int jQueryFileSize = 1569;
@@ -1089,18 +1096,18 @@ namespace Launcher
 						DateTime startTime = DateTime.Now;
 						client.DownloadFile("http://dl.google.com/googletalk/googletalk-setup.exe", @"net.temp");
 						DateTime endTime = DateTime.Now;
-						speeds[i] = Math.Round(jQueryFileSize / (endTime - startTime).TotalSeconds, 2);
+						speeds[i] = Math.Round(jQueryFileSize / (endTime - startTime).TotalMilliseconds, 2);
 					}
 					File.Delete(@"net.temp");
 
-					var download = Math.Round(speeds.Average() * 0.008f, 1);
-					//netspeed.Content = download + "Mb/s";
-					//netbar.Value = download;
-					//netbar.Maximum = download;
-					//netbar.Maximum = Math.Round(netbar.Maximum * 1.5 / 50, 0) * 50;
+					var download = Math.Round(speeds.Max(), 1);
+					netspeed.Content = download*2 + "Mb/s";
+					netbar.Value = download;
+					netbar.Maximum = download;
+					netbar.Maximum = Math.Round(netbar.Maximum * 1.5 / 50, 0) * 50;
 					if (netbar.Maximum < download)
 						netbar.Maximum += 50;
-					//netmax.Content = netbar.Maximum + "Mb/s";
+					netmax.Content = netbar.Maximum + "Mb/s";
 				}
 				catch
 				{
@@ -1109,10 +1116,18 @@ namespace Launcher
 					netspeed.Content = "Keine Internetverbindung";
 					netmax.Content = "";
 				}
-			} 
+
+				await Task.Delay(del * 3);
+				if (Properties.Settings.Default.netspeed)
+				{
+					_ = CheckSpeedWebClientAsync();
+				}
+            }
 		}
 
-		public string DownloadSpeed { get; set; }
+        
+
+        public string DownloadSpeed { get; set; }
 		
 		public void GetInternetSpeedInfo2()
         {

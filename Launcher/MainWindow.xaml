@@ -557,14 +557,14 @@
                     <StackPanel x:Name="widgets" Orientation="Vertical">
                         <Grid x:Name="timeg" VerticalAlignment="Top" Width="200" Height="100" Margin="0,0,0,10">
                             <Border x:Name="timeb" Background="{Binding color1}" BorderBrush="{Binding BorderBrush, ElementName=settings}" BorderThickness="2" CornerRadius="{Binding CornerRadius, ElementName=settings}">
-                                <Label x:Name="time" Content="00:00:00" Foreground="{Binding color2}" Loaded="timerefresh" FontSize="44" HorizontalAlignment="Center" Background="{x:Null}" Height="74" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" Padding="0" VerticalAlignment="Center"/>
+                                <Label x:Name="time" Content="00:00" Foreground="{Binding color2}" Loaded="timerefresh" FontSize="44" HorizontalAlignment="Center" Background="{x:Null}" Height="74" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" Padding="0" VerticalAlignment="Center"/>
                             </Border>
                         </Grid>
                         <Grid x:Name="dateb" VerticalAlignment="Top" Width="200" Height="100" Margin="0,0,0,10">
                             <Border Background="{Binding Background, ElementName=timeb}" BorderBrush="{Binding BorderBrush, ElementName=timeb}" BorderThickness="2" CornerRadius="{Binding CornerRadius, ElementName=settings}">
                                 <StackPanel VerticalAlignment="Center">
                                     <Label x:Name="day" Content="..." Foreground="{Binding Foreground, ElementName=time}" Loaded="timerefresh" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontSize="20" Padding="5,0,5,0"/>
-                                    <Label x:Name="date" Content="00 00 0000" Foreground="{Binding Foreground, ElementName=time}" Loaded="timerefresh" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center" Padding="5,0,5,-1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
+                                    <Label x:Name="date" Content="..." Foreground="{Binding Foreground, ElementName=time}" Loaded="timerefresh" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center" Padding="5,0,5,-1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
                                 </StackPanel>
                             </Border>
                         </Grid>
@@ -596,7 +596,7 @@
                                     <StackPanel VerticalAlignment="Center">
                                         <Label Foreground="{Binding color2}" Content="Prozessor" Padding="0" HorizontalAlignment="Center" FontSize="20"/>
                                         <Grid Margin="0,10,0,0" >
-                                            <ProgressBar x:Name="cpubar" Background="#4C585858" BorderBrush="{x:Null}" Foreground="{Binding color3}" Width="180" Height="33"/>
+                                            <ProgressBar x:Name="cpubar" Background="#4C585858" BorderBrush="{Binding Background, ElementName=cpubar}" Foreground="{Binding color3}" Width="180" Height="33"/>
                                             <Label x:Name="cpuusage" Content="0%" HorizontalAlignment="Left" Foreground="White" Margin="11,0,0,0" VerticalAlignment="Center"/>
                                             <Label HorizontalAlignment="Right" Content="100%" Foreground="White" Margin="0,0,11,0" VerticalAlignment="Center"/>
                                         </Grid>
@@ -610,7 +610,7 @@
                                     <StackPanel VerticalAlignment="Center">
                                         <Label Foreground="{Binding color2}" Content="Arbeitsspeicher" Padding="0.1" HorizontalAlignment="Center" FontSize="20"/>
                                         <Grid Margin="0,10,0,0" >
-                                            <ProgressBar x:Name="rambar" Background="{Binding Background, ElementName=cpubar}" BorderBrush="{x:Null}" Foreground="{Binding Foreground, ElementName=cpubar}" Width="180" Height="33"/>
+                                            <ProgressBar x:Name="rambar" Background="{Binding Background, ElementName=cpubar}" BorderBrush="{Binding Background, ElementName=cpubar}" Foreground="{Binding Foreground, ElementName=cpubar}" Width="180" Height="33"/>
                                             <Label x:Name="ramusage" Content="0GB" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="11,0,0,0" Foreground="White"/>
                                             <Label x:Name="maxram" HorizontalAlignment="Right" Content="0GB" VerticalAlignment="Center" Margin="0,0,11,0" Foreground="White"/>
                                         </Grid>
@@ -622,13 +622,11 @@
                             <Border x:Name="netborder" Background="{Binding Background, ElementName=timeb}" BorderBrush="{Binding BorderBrush, ElementName=timeb}" BorderThickness="{Binding BorderThickness, ElementName=cpuborder}" CornerRadius="{Binding CornerRadius, ElementName=settings}" Margin="0,0,0,10">
                                 <Grid>
                                     <StackPanel>
-                                        <Label Foreground="{Binding color2}" Content="Netzwerk" Padding="0" HorizontalAlignment="Center" FontSize="20"/>
-                                        <Grid>
-                                            <ProgressBar x:Name="netbar" Background="{x:Null}" BorderBrush="{x:Null}" Maximum="1" Foreground="{Binding Foreground, ElementName=cpubar}"/>
-                                            <Label x:Name="netspeed" Foreground="{Binding color2}" HorizontalAlignment="Left" Content="0 Mb/s"/>
-                                            <Label x:Name="netping" Foreground="{Binding color2}" HorizontalAlignment="Right" Margin="0,0,5,0" Content="0 ms"/>
-                                            <Label x:Name="netmax" Foreground="{Binding color2}" HorizontalAlignment="Right" Margin="0,0,5,0"/>
-
+                                        <Label Foreground="{Binding color2}" Content="Netzwerk" Padding="0.1" HorizontalAlignment="Center" FontSize="20"/>
+                                        <Grid Margin="0,10,0,0">
+                                            <ProgressBar x:Name="netbar" Background="{Binding Background, ElementName=cpubar}" BorderBrush="{Binding Background, ElementName=cpubar}" Foreground="{Binding Foreground, ElementName=cpubar}" Width="180" Height="33"/>
+                                            <Label x:Name="netspeed" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="11,0,0,0" Content="0Mb/s"/>
+                                            <Label x:Name="netmax" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,11,0" Content="0ms 100Mb/s"/>
                                         </Grid>
                                     </StackPanel>
                                 </Grid>
