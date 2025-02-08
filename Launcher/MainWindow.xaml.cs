@@ -16,6 +16,7 @@ using System.Threading;
 using System.Runtime.InteropServices;
 using static System.Windows.Forms.LinkLabel;
 using System.Xml.Linq;
+using Launcher.Desktop;
 
 namespace Launcher
 {
@@ -46,6 +47,9 @@ namespace Launcher
         private const uint SWP_NOSIZE = 0x0001;
         private const uint SWP_NOMOVE = 0x0002;
         private const uint SWP_NOACTIVATE = 0x0010;
+
+		//item var
+		public static int ItemScale { get; set; }
 
 		public MainWindow()
 		{
@@ -102,9 +106,15 @@ namespace Launcher
         }
         // Load Settings ==================================================================================>
 
+        public static SolidColorBrush Color1 { get; set; }
+        public static SolidColorBrush Color2 { get; set; }
+        public static SolidColorBrush Color3 { get; set; }
+
         private async void Loadsettings()
         {
-			await Task.Delay(10);
+			//await Task.Delay(10);
+			DesktopFrame.Content = new ItemGrid();
+			ItemScale = 100;
 
 			if (Properties.Settings.Default.darkmode == "false")
 			{
@@ -113,32 +123,41 @@ namespace Launcher
 				obj.color2 = "#FF000000";
 				obj.color3 = "#FF2F7FD6";
 				DataContext = obj;
-			}
-			if (Properties.Settings.Default.darkmode == "true")
+                Color1 = new SolidColorBrush((Color)ColorConverter.ConvertFromString(obj.color1));
+                Color2 = new SolidColorBrush((Color)ColorConverter.ConvertFromString(obj.color2));
+                Color3 = new SolidColorBrush((Color)ColorConverter.ConvertFromString(obj.color3));
+            }
+            if (Properties.Settings.Default.darkmode == "true")
 			{
 				UI obj = new UI();
 				obj.color1 = "#99000000";
 				obj.color2 = "#FFFFFFFF";
 				obj.color3 = "#FF0F184E";
 				DataContext = obj;
-			}
+                Color1 = new SolidColorBrush((Color)ColorConverter.ConvertFromString(obj.color1));
+                Color2 = new SolidColorBrush((Color)ColorConverter.ConvertFromString(obj.color2));
+                Color3 = new SolidColorBrush((Color)ColorConverter.ConvertFromString(obj.color3));
+            }
 
-			if (Properties.Settings.Default.darkmode == "default")
+            if (Properties.Settings.Default.darkmode == "default")
 			{
 				UI obj = new UI();
 				obj.color1 = Properties.Settings.Default.cl1;
 				obj.color2 = Properties.Settings.Default.cl2;
 				obj.color3 = Properties.Settings.Default.cl3;
 				DataContext = obj;
-			}
+                Color1 = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Properties.Settings.Default.cl1));
+                Color2 = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Properties.Settings.Default.cl1));
+                Color3 = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Properties.Settings.Default.cl3));
+            }
 
-        
-        
 
-			if (Properties.Settings.Default.cornerradius == true)
+
+
+            if (Properties.Settings.Default.cornerradius == true)
 			{
-				settings.CornerRadius = new CornerRadius(14);
-				roundedb.IsChecked = true;
+                settings.CornerRadius = new CornerRadius(14);
+                roundedb.IsChecked = true;
 			}
 			else
 			{
@@ -168,15 +187,15 @@ namespace Launcher
 
 			if (Properties.Settings.Default.apps == true)
 			{
-				system.Opacity = 100;
+				system.Width = 130;
 				systemcheck.IsChecked = true;
 				systemscroll.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
 				system.IsEnabled = true;
 			}
 			else
 			{
-				system.Opacity = 0;
-				systemcheck.IsChecked = false;
+                system.Width = 0;
+                systemcheck.IsChecked = false;
 				systemscroll.VerticalScrollBarVisibility = ScrollBarVisibility.Disabled;
 				system.IsEnabled = false;
 			}
@@ -351,11 +370,17 @@ namespace Launcher
 			{
 				popup.Content = new shutdown();
 				popupgrid.Opacity = 100;
-				popupf.Opacity = 100;
-				e.Handled = true;
+				popup.Height = 300;
+                popup.Width = 500;
+                popupf.Opacity = 100;
+                e.Handled = true;
 			}
 		}
 
+        private void Wallpaper_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+			ItemGrid.Deselect();
+        }
 
 
         private void Minw(object sender, RoutedEventArgs e)
@@ -673,14 +698,14 @@ namespace Launcher
         {
             if (systemcheck.IsChecked == true)
             {
-                system.Opacity = 100;
+                system.Width = 130;
                 Properties.Settings.Default.apps = true;
                 systemscroll.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
                 system.IsEnabled = true;
             }
             else
             {
-                system.Opacity = 0;
+                system.Width = 0;
                 Properties.Settings.Default.apps = false;
                 systemscroll.VerticalScrollBarVisibility = ScrollBarVisibility.Disabled;
                 system.IsEnabled = false;
@@ -858,9 +883,12 @@ namespace Launcher
 			obj.color3 = "#FF2F7FD6";
 			DataContext = obj;
 			Properties.Settings.Default.darkmode = "false";
-		}
+            Color1 = new SolidColorBrush((Color)ColorConverter.ConvertFromString(obj.color1));
+            Color2 = new SolidColorBrush((Color)ColorConverter.ConvertFromString(obj.color2));
+            Color3 = new SolidColorBrush((Color)ColorConverter.ConvertFromString(obj.color3));
+        }
 
-		private void dark(object sender, RoutedEventArgs e)
+        private void dark(object sender, RoutedEventArgs e)
 		{
 			UI obj = new UI();
 			obj.color1 = "#99000000";
@@ -868,10 +896,13 @@ namespace Launcher
 			obj.color3 = "#FF0F184E";
 			DataContext = obj;
 			Properties.Settings.Default.darkmode = "true";
-		}
+            Color1 = new SolidColorBrush((Color)ColorConverter.ConvertFromString(obj.color1));
+            Color2 = new SolidColorBrush((Color)ColorConverter.ConvertFromString(obj.color2));
+            Color3 = new SolidColorBrush((Color)ColorConverter.ConvertFromString(obj.color3));
+        }
 
-		// Ressurcen CPU RAM ==============================================================================>
-		public void cpuRefresh()
+        // Ressurcen CPU RAM ==============================================================================>
+        public void cpuRefresh()
 		{
 			// trigger netspeedtest
 			if (Properties.Settings.Default.netspeed)
@@ -966,8 +997,10 @@ namespace Launcher
 		{
 			popup.Content = null;
 			popupgrid.Opacity = 0;
-			popupf.Opacity = 0;
-			Properties.Settings.Default.firststart = false;
+            popup.Height = 0;
+            popup.Width = 0;
+            popupf.Opacity = 0;
+            Properties.Settings.Default.firststart = false;
 		}
 
         // Internet Geschwindigkeit ===========================================================================================>
@@ -1318,6 +1351,7 @@ namespace Launcher
             // Position the window behind other applications
             SetWindowPos(hWnd, HWND_BOTTOM, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_NOACTIVATE);
         }
+
     }
 }
 

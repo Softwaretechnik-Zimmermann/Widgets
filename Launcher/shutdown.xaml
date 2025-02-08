@@ -51,7 +51,7 @@
 
         <Style TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#4C585858" />
-            <Setter Property="Foreground" Value="#FF2D2D2D" />
+            <Setter Property="Foreground" Value="White" />
             <Setter Property="FontSize" Value="15" />
             <Setter Property="SnapsToDevicePixels" Value="True" />
 
@@ -133,7 +133,7 @@
     <Grid x:Name="background" Background="White">
         <Border Background="#4C8A8A8A" Margin="3,42,3,59" CornerRadius="13"/>
         <StackPanel>
-            <TextBlock Text="Windows herunterfahren" Margin="10,11,0,0"/>
+            <TextBlock Text="" Margin="10,11,0,0"/>
             <TextBlock Text="Wählen Sie einen Vorgang aus" Margin="0,33,0,0" HorizontalAlignment="Center" FontSize="14"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,30,0,0">
                 <Image x:Name="image" Source="shutdown.png" Width="40" Margin="0,0,80,0"/>

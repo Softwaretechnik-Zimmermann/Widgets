@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Launcher"
         mc:Ignorable="d"
-        Title="Popup" Height="300" Width="600" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" WindowStyle="ToolWindow">
+        Title="Popup" 
+        Height="300" Width="600" 
+        WindowStartupLocation="CenterScreen" ShowInTaskbar="False" WindowStyle="ToolWindow"
+        MinHeight="100" MinWidth="150">
 
     <Window.Resources>
         <SolidColorBrush x:Key="StandardBorderBrush" Color="#888" />

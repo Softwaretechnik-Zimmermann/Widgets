@@ -477,181 +477,181 @@
     </Window.Resources>
 
     <Grid x:Name="maingrid" Margin="0,0,0,50" Background="#FFE6E6E6">
-
-        <ScrollViewer x:Name="scrollViewer" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto">
-            <StackPanel x:Name="stackpanel" Orientation="Horizontal" Margin="0,15,0,0" HorizontalAlignment="Right" ScrollViewer.VerticalScrollBarVisibility="Auto">
-                <ScrollViewer x:Name="systemscroll" Margin="20,0,10,0" VerticalScrollBarVisibility="Auto" VerticalAlignment="Top">
-                    <StackPanel x:Name="system" Orientation="Vertical" Width="130" >
-                        <Label x:Name="Labelheadline" Foreground="White" Content="System" HorizontalContentAlignment="Center" FontSize="16" Margin="0,0,0,10">
-                            <Label.Effect>
-                                <DropShadowEffect/>
-                            </Label.Effect>
-                        </Label>
-                        <Button x:Name="explorer2" Style="{StaticResource buttonstyle2}" Width="{Binding Value, ElementName=ansichtslider}" Height="{Binding Value, ElementName=ansichtslider}" Margin="5" Click="explorero" Background="#02000000" BorderBrush="{x:Null}" Foreground="#FF545454">
-                            <Grid>
-                                <Image x:Name="image0" Source="folder.png" Margin="0,0,0,18"/>
-                                <Label x:Name="label" VerticalAlignment="Bottom" Content="Explorer" Foreground="White" FontSize="12" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" Padding="0,0,0,0">
-                                    <Label.Effect>
-                                        <DropShadowEffect/>
-                                    </Label.Effect>
-                                </Label>
-                            </Grid>
-                        </Button>
-                        <Button Style="{StaticResource buttonstyle2}" Width="{Binding ActualWidth, ElementName=explorer2, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=explorer2, Mode=OneWay}" Margin="{Binding Margin, ElementName=explorer}" Click="cmdo" Background="#02000000" BorderBrush="{x:Null}" Foreground="#FF545454">
-                            <Grid>
-                                <Image Source="cmd.png" Margin="0,0,0,10" Width="{Binding ActualWidth, ElementName=image0, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=image0, Mode=OneWay}"/>
-                                <Label x:Name="label1" VerticalAlignment="Bottom" Content="Cmd" Foreground="White" FontSize="{Binding FontSize, ElementName=label}" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" Padding="0,0,0,0">
-                                    <Label.Effect>
-                                        <DropShadowEffect/>
-                                    </Label.Effect>
-                                </Label>
-                            </Grid>
-                        </Button>
-                        <Button Style="{StaticResource buttonstyle2}" Width="{Binding ActualWidth, ElementName=explorer2, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=explorer2, Mode=OneWay}" Margin="{Binding Margin, ElementName=explorer}" Click="editoro" Background="#02000000" BorderBrush="{x:Null}" Foreground="#FF545454">
-                            <Grid>
-                                <Image Source="notepad.png" Margin="0,-10,0,10" Width="{Binding ActualWidth, ElementName=image0, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=image0, Mode=OneWay}" VerticalAlignment="Top"/>
-                                <Label VerticalAlignment="Bottom" Content="Editor" Foreground="White" FontSize="{Binding FontSize, ElementName=label}" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" Padding="0,0,0,0" Margin="0,0,0,-8">
-                                    <Label.Effect>
-                                        <DropShadowEffect/>
-                                    </Label.Effect>
-                                </Label>
-                            </Grid>
-                        </Button>
-                        <Button Style="{StaticResource buttonstyle2}" Width="{Binding ActualWidth, ElementName=explorer2, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=explorer2, Mode=OneWay}" Margin="{Binding Margin, ElementName=explorer}" Click="calco" Background="#02000000" BorderBrush="{x:Null}" Foreground="#FF545454">
-                            <Grid>
-                                <Image Source="calc.png" Margin="0,-10,0,10" Width="{Binding ActualWidth, ElementName=image0, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=image0, Mode=OneWay}" VerticalAlignment="Top"/>
-                                <Label VerticalAlignment="Bottom" Content="Rechner" Foreground="White" FontSize="{Binding FontSize, ElementName=label}" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" Padding="0,0,0,0" Margin="0,0,0,-8">
-                                    <Label.Effect>
-                                        <DropShadowEffect/>
-                                    </Label.Effect>
-                                </Label>
-                            </Grid>
-                        </Button>
-
-
-                        <Rectangle Height="15"/>
-                        <Label Foreground="White" Content="Widgets" HorizontalContentAlignment="Center" FontSize="{Binding FontSize, ElementName=Labelheadline}" Margin="0,0,0,10">
-                            <Label.Effect>
-                                <DropShadowEffect/>
-                            </Label.Effect>
-                        </Label>
-                        <Button Style="{StaticResource buttonstyle2}" x:Name="settingsicon2" Width="{Binding ActualWidth, ElementName=explorer2, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=explorer2, Mode=OneWay}" Margin="5" Click="settingsshow" Background="#02000000" BorderBrush="{x:Null}" Foreground="#FF545454" VerticalAlignment="Top">
-                            <Grid>
-                                <Image x:Name="image1" Source="settings.png"  Margin="0,-5,0,15" Width="{Binding ActualWidth, ElementName=image0, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=image0, Mode=OneWay}" VerticalAlignment="Top">
-                                    <Image.Effect>
-                                        <DropShadowEffect/>
-                                    </Image.Effect>
-                                </Image>
-                                <Label VerticalAlignment="Bottom" Content="Einstellungen" Foreground="White" FontSize="{Binding FontSize, ElementName=label}" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" Padding="0,0,0,0" Margin="0,0,0,-3">
-                                    <Label.Effect>
-                                        <DropShadowEffect/>
-                                    </Label.Effect>
-                                </Label>
-                            </Grid>
-                        </Button>
-
-                    </StackPanel>
-                </ScrollViewer>
-
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <StackPanel x:Name="widgets" Orientation="Vertical">
-                        <Grid x:Name="timeg" VerticalAlignment="Top" Width="200" Height="100" Margin="0,0,0,10">
-                            <Border x:Name="timeb" Background="{Binding color1}" BorderBrush="{Binding BorderBrush, ElementName=settings}" BorderThickness="2" CornerRadius="{Binding CornerRadius, ElementName=settings}">
-                                <Label x:Name="time" Content="00:00" Foreground="{Binding color2}" Loaded="timerefresh" FontSize="44" HorizontalAlignment="Center" Background="{x:Null}" Height="74" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" Padding="0" VerticalAlignment="Center"/>
-                            </Border>
+        <Image x:Name="Wallpaper" Source="1.jpg" Stretch="UniformToFill" MouseDown="Wallpaper_MouseDown"/>
+        <Frame x:Name="DesktopFrame" HorizontalAlignment="Left"></Frame>
+        <StackPanel x:Name="stackpanel" Orientation="Horizontal" Margin="0,15,0,0" HorizontalAlignment="Right" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ScrollViewer x:Name="systemscroll" Margin="20,0,10,0" VerticalScrollBarVisibility="Auto" VerticalAlignment="Top">
+                <StackPanel x:Name="system" Orientation="Vertical" Width="130" >
+                    <Label x:Name="Labelheadline" Foreground="White" Content="System" HorizontalContentAlignment="Center" FontSize="16" Margin="0,0,0,10">
+                        <Label.Effect>
+                            <DropShadowEffect/>
+                        </Label.Effect>
+                    </Label>
+                    <Button x:Name="explorer2" Style="{StaticResource buttonstyle2}" Width="{Binding Value, ElementName=ansichtslider}" Height="{Binding Value, ElementName=ansichtslider}" Margin="5" Click="explorero" Background="#02000000" BorderBrush="{x:Null}" Foreground="#FF545454">
+                        <Grid>
+                            <Image x:Name="image0" Source="folder.png" Margin="0,0,0,18"/>
+                            <Label x:Name="label" VerticalAlignment="Bottom" Content="Explorer" Foreground="White" FontSize="12" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" Padding="0,0,0,0">
+                                <Label.Effect>
+                                    <DropShadowEffect/>
+                                </Label.Effect>
+                            </Label>
                         </Grid>
-                        <Grid x:Name="dateb" VerticalAlignment="Top" Width="200" Height="100" Margin="0,0,0,10">
-                            <Border Background="{Binding Background, ElementName=timeb}" BorderBrush="{Binding BorderBrush, ElementName=timeb}" BorderThickness="2" CornerRadius="{Binding CornerRadius, ElementName=settings}">
+                    </Button>
+                    <Button Style="{StaticResource buttonstyle2}" Width="{Binding ActualWidth, ElementName=explorer2, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=explorer2, Mode=OneWay}" Margin="{Binding Margin, ElementName=explorer}" Click="cmdo" Background="#02000000" BorderBrush="{x:Null}" Foreground="#FF545454">
+                        <Grid>
+                            <Image Source="cmd.png" Margin="0,0,0,10" Width="{Binding ActualWidth, ElementName=image0, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=image0, Mode=OneWay}"/>
+                            <Label x:Name="label1" VerticalAlignment="Bottom" Content="Cmd" Foreground="White" FontSize="{Binding FontSize, ElementName=label}" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" Padding="0,0,0,0">
+                                <Label.Effect>
+                                    <DropShadowEffect/>
+                                </Label.Effect>
+                            </Label>
+                        </Grid>
+                    </Button>
+                    <Button Style="{StaticResource buttonstyle2}" Width="{Binding ActualWidth, ElementName=explorer2, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=explorer2, Mode=OneWay}" Margin="{Binding Margin, ElementName=explorer}" Click="editoro" Background="#02000000" BorderBrush="{x:Null}" Foreground="#FF545454">
+                        <Grid>
+                            <Image Source="notepad.png" Margin="0,-10,0,10" Width="{Binding ActualWidth, ElementName=image0, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=image0, Mode=OneWay}" VerticalAlignment="Top"/>
+                            <Label VerticalAlignment="Bottom" Content="Editor" Foreground="White" FontSize="{Binding FontSize, ElementName=label}" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" Padding="0,0,0,0" Margin="0,0,0,-8">
+                                <Label.Effect>
+                                    <DropShadowEffect/>
+                                </Label.Effect>
+                            </Label>
+                        </Grid>
+                    </Button>
+                    <Button Style="{StaticResource buttonstyle2}" Width="{Binding ActualWidth, ElementName=explorer2, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=explorer2, Mode=OneWay}" Margin="{Binding Margin, ElementName=explorer}" Click="calco" Background="#02000000" BorderBrush="{x:Null}" Foreground="#FF545454">
+                        <Grid>
+                            <Image Source="calc.png" Margin="0,-10,0,10" Width="{Binding ActualWidth, ElementName=image0, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=image0, Mode=OneWay}" VerticalAlignment="Top"/>
+                            <Label VerticalAlignment="Bottom" Content="Rechner" Foreground="White" FontSize="{Binding FontSize, ElementName=label}" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" Padding="0,0,0,0" Margin="0,0,0,-8">
+                                <Label.Effect>
+                                    <DropShadowEffect/>
+                                </Label.Effect>
+                            </Label>
+                        </Grid>
+                    </Button>
+
+
+                    <Rectangle Height="15"/>
+                    <Label Foreground="White" Content="Widgets" HorizontalContentAlignment="Center" FontSize="{Binding FontSize, ElementName=Labelheadline}" Margin="0,0,0,10">
+                        <Label.Effect>
+                            <DropShadowEffect/>
+                        </Label.Effect>
+                    </Label>
+                    <Button Style="{StaticResource buttonstyle2}" x:Name="settingsicon2" Width="{Binding ActualWidth, ElementName=explorer2, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=explorer2, Mode=OneWay}" Margin="5" Click="settingsshow" Background="#02000000" BorderBrush="{x:Null}" Foreground="#FF545454" VerticalAlignment="Top">
+                        <Grid>
+                            <Image x:Name="image1" Source="settings.png"  Margin="0,-5,0,15" Width="{Binding ActualWidth, ElementName=image0, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=image0, Mode=OneWay}" VerticalAlignment="Top">
+                                <Image.Effect>
+                                    <DropShadowEffect/>
+                                </Image.Effect>
+                            </Image>
+                            <Label VerticalAlignment="Bottom" Content="Einstellungen" Foreground="White" FontSize="{Binding FontSize, ElementName=label}" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" Padding="0,0,0,0" Margin="0,0,0,-3">
+                                <Label.Effect>
+                                    <DropShadowEffect/>
+                                </Label.Effect>
+                            </Label>
+                        </Grid>
+                    </Button>
+
+                </StackPanel>
+            </ScrollViewer>
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel x:Name="widgets" Orientation="Vertical">
+                    <Grid x:Name="timeg" VerticalAlignment="Top" Width="200" Height="100" Margin="0,0,0,10">
+                        <Border x:Name="timeb" Background="{Binding color1}" BorderBrush="{Binding BorderBrush, ElementName=settings}" BorderThickness="2" CornerRadius="{Binding CornerRadius, ElementName=settings}">
+                            <Label x:Name="time" Content="00:00" Foreground="{Binding color2}" Loaded="timerefresh" FontSize="44" HorizontalAlignment="Center" Background="{x:Null}" Height="74" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" Padding="0" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <Grid x:Name="dateb" VerticalAlignment="Top" Width="200" Height="100" Margin="0,0,0,10">
+                        <Border Background="{Binding Background, ElementName=timeb}" BorderBrush="{Binding BorderBrush, ElementName=timeb}" BorderThickness="2" CornerRadius="{Binding CornerRadius, ElementName=settings}">
+                            <StackPanel VerticalAlignment="Center">
+                                <Label x:Name="day" Content="..." Foreground="{Binding Foreground, ElementName=time}" Loaded="timerefresh" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontSize="20" Padding="5,0,5,0"/>
+                                <Label x:Name="date" Content="..." Foreground="{Binding Foreground, ElementName=time}" Loaded="timerefresh" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center" Padding="5,0,5,-1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                    <Grid x:Name="weatherb" VerticalAlignment="Top" Width="200" Height="100" Margin="0,0,0,7">
+                        <Border Background="{Binding Background, ElementName=timeb}" BorderBrush="{Binding BorderBrush, ElementName=timeb}" BorderThickness="2" CornerRadius="{Binding CornerRadius, ElementName=settings}">
+                            <Grid>
+                                <Label x:Name="weather" Content=".." Foreground="{Binding Foreground, ElementName=time}" Loaded="weather_Loaded" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="90"/>
+                                <ItemsControl ItemsSource="{Binding CPUUsagePoints}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Canvas>
+                                                <Line 
+        X1="{Binding Start.X}" Y1="{Binding Start.Y}" 
+        X2="{Binding End.X}" Y2="{Binding End.Y}" 
+        Stroke="Green" StrokeThickness="0.3"
+        >
+                                                </Line>
+                                            </Canvas>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </Grid>
+                        </Border>
+                    </Grid>
+
+                    <Grid Width="200" VerticalAlignment="Top">
+                        <Border x:Name="cpuborder" Background="{Binding Background, ElementName=timeb}" BorderBrush="{Binding BorderBrush, ElementName=timeb}" BorderThickness="2" CornerRadius="{Binding CornerRadius, ElementName=settings}" Margin="0,0,0,10">
+                            <Grid>
                                 <StackPanel VerticalAlignment="Center">
-                                    <Label x:Name="day" Content="..." Foreground="{Binding Foreground, ElementName=time}" Loaded="timerefresh" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontSize="20" Padding="5,0,5,0"/>
-                                    <Label x:Name="date" Content="..." Foreground="{Binding Foreground, ElementName=time}" Loaded="timerefresh" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center" Padding="5,0,5,-1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
+                                    <Label Foreground="{Binding color2}" Content="Prozessor" Padding="0" HorizontalAlignment="Center" FontSize="20"/>
+                                    <Grid Margin="0,10,0,0" >
+                                        <ProgressBar x:Name="cpubar" Background="#4C585858" BorderBrush="{Binding Background, ElementName=cpubar}" Foreground="{Binding color3}" Width="180" Height="33"/>
+                                        <Label x:Name="cpuusage" Content="0%" HorizontalAlignment="Left" Foreground="White" Margin="11,0,0,0" VerticalAlignment="Center"/>
+                                        <Label HorizontalAlignment="Right" Content="100%" Foreground="White" Margin="0,0,11,0" VerticalAlignment="Center"/>
+                                    </Grid>
                                 </StackPanel>
-                            </Border>
-                        </Grid>
-                        <Grid x:Name="weatherb" VerticalAlignment="Top" Width="200" Height="100" Margin="0,0,0,7">
-                            <Border Background="{Binding Background, ElementName=timeb}" BorderBrush="{Binding BorderBrush, ElementName=timeb}" BorderThickness="2" CornerRadius="{Binding CornerRadius, ElementName=settings}">
-                                <Grid>
-                                    <Label x:Name="weather" Content=".." Foreground="{Binding Foreground, ElementName=time}" Loaded="weather_Loaded" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="90"/>
-                                    <ItemsControl ItemsSource="{Binding CPUUsagePoints}">
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate>
-                                                <Canvas>
-                                                    <Line 
-          X1="{Binding Start.X}" Y1="{Binding Start.Y}" 
-          X2="{Binding End.X}" Y2="{Binding End.Y}" 
-          Stroke="Green" StrokeThickness="0.3"
-          >
-                                                    </Line>
-                                                </Canvas>
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                    </ItemsControl>
-                                </Grid>
-                            </Border>
-                        </Grid>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                    <Grid VerticalAlignment="Top" Width="200">
+                        <Border x:Name="ramborder" Background="{Binding Background, ElementName=timeb}" BorderBrush="{Binding BorderBrush, ElementName=timeb}" BorderThickness="{Binding BorderThickness, ElementName=cpuborder}" CornerRadius="{Binding CornerRadius, ElementName=settings}" Margin="0,0,0,6">
+                            <Grid>
+                                <StackPanel VerticalAlignment="Center">
+                                    <Label Foreground="{Binding color2}" Content="Arbeitsspeicher" Padding="0.1" HorizontalAlignment="Center" FontSize="20"/>
+                                    <Grid Margin="0,10,0,0" >
+                                        <ProgressBar x:Name="rambar" Background="{Binding Background, ElementName=cpubar}" BorderBrush="{Binding Background, ElementName=cpubar}" Foreground="{Binding Foreground, ElementName=cpubar}" Width="180" Height="33"/>
+                                        <Label x:Name="ramusage" Content="0GB" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="11,0,0,0" Foreground="White"/>
+                                        <Label x:Name="maxram" HorizontalAlignment="Right" Content="0GB" VerticalAlignment="Center" Margin="0,0,11,0" Foreground="White"/>
+                                    </Grid>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                    <Grid VerticalAlignment="Top" Width="200" Initialized="netspeedcheck">
+                        <Border x:Name="netborder" Background="{Binding Background, ElementName=timeb}" BorderBrush="{Binding BorderBrush, ElementName=timeb}" BorderThickness="{Binding BorderThickness, ElementName=cpuborder}" CornerRadius="{Binding CornerRadius, ElementName=settings}" Margin="0,0,0,10">
+                            <Grid>
+                                <StackPanel>
+                                    <Label Foreground="{Binding color2}" Content="Netzwerk" Padding="0.1" HorizontalAlignment="Center" FontSize="20"/>
+                                    <Grid Margin="0,10,0,0">
+                                        <ProgressBar x:Name="netbar" Background="{Binding Background, ElementName=cpubar}" BorderBrush="{Binding Background, ElementName=cpubar}" Foreground="{Binding Foreground, ElementName=cpubar}" Width="180" Height="33"/>
+                                        <Label x:Name="netspeed" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="11,0,0,0" Content="0Mb/s"/>
+                                        <Label x:Name="netmax" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,11,0" Content="0ms 100Mb/s"/>
+                                    </Grid>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                    <Grid VerticalAlignment="Top" Width="200" Initialized="netspeedcheck">
+                        <Border x:Name="linkborder" Background="{Binding Background, ElementName=timeb}" BorderBrush="{Binding BorderBrush, ElementName=timeb}" BorderThickness="{Binding BorderThickness, ElementName=cpuborder}" CornerRadius="{Binding CornerRadius, ElementName=settings}" Margin="0,0,0,10" Height="100">
+                            <Grid>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,4,0,0">
+                                    <Button x:Name="b1" Click="b_Click" Content="..." Margin="3" Height="37" Width="86.6"/>
+                                    <Button x:Name="b2" Click="b_Click" Content="..." Margin="{Binding Margin, ElementName=b1}" Height="{Binding Height, ElementName=b1}" Width="{Binding Width, ElementName=b1}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,4">
+                                    <Button x:Name="b3" Click="b_Click" Content="..." Margin="{Binding Margin, ElementName=b1}" Height="{Binding Height, ElementName=b1}" Width="{Binding Width, ElementName=b1}"/>
+                                    <Button x:Name="b4" Click="b_Click" Content="..." Margin="{Binding Margin, ElementName=b1}" Height="{Binding Height, ElementName=b1}" Width="{Binding Width, ElementName=b1}"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </StackPanel>
+            </ScrollViewer>
 
-                        <Grid Width="200" VerticalAlignment="Top">
-                            <Border x:Name="cpuborder" Background="{Binding Background, ElementName=timeb}" BorderBrush="{Binding BorderBrush, ElementName=timeb}" BorderThickness="2" CornerRadius="{Binding CornerRadius, ElementName=settings}" Margin="0,0,0,10">
-                                <Grid>
-                                    <StackPanel VerticalAlignment="Center">
-                                        <Label Foreground="{Binding color2}" Content="Prozessor" Padding="0" HorizontalAlignment="Center" FontSize="20"/>
-                                        <Grid Margin="0,10,0,0" >
-                                            <ProgressBar x:Name="cpubar" Background="#4C585858" BorderBrush="{Binding Background, ElementName=cpubar}" Foreground="{Binding color3}" Width="180" Height="33"/>
-                                            <Label x:Name="cpuusage" Content="0%" HorizontalAlignment="Left" Foreground="White" Margin="11,0,0,0" VerticalAlignment="Center"/>
-                                            <Label HorizontalAlignment="Right" Content="100%" Foreground="White" Margin="0,0,11,0" VerticalAlignment="Center"/>
-                                        </Grid>
-                                    </StackPanel>
-                                </Grid>
-                            </Border>
-                        </Grid>
-                        <Grid VerticalAlignment="Top" Width="200">
-                            <Border x:Name="ramborder" Background="{Binding Background, ElementName=timeb}" BorderBrush="{Binding BorderBrush, ElementName=timeb}" BorderThickness="{Binding BorderThickness, ElementName=cpuborder}" CornerRadius="{Binding CornerRadius, ElementName=settings}" Margin="0,0,0,6">
-                                <Grid>
-                                    <StackPanel VerticalAlignment="Center">
-                                        <Label Foreground="{Binding color2}" Content="Arbeitsspeicher" Padding="0.1" HorizontalAlignment="Center" FontSize="20"/>
-                                        <Grid Margin="0,10,0,0" >
-                                            <ProgressBar x:Name="rambar" Background="{Binding Background, ElementName=cpubar}" BorderBrush="{Binding Background, ElementName=cpubar}" Foreground="{Binding Foreground, ElementName=cpubar}" Width="180" Height="33"/>
-                                            <Label x:Name="ramusage" Content="0GB" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="11,0,0,0" Foreground="White"/>
-                                            <Label x:Name="maxram" HorizontalAlignment="Right" Content="0GB" VerticalAlignment="Center" Margin="0,0,11,0" Foreground="White"/>
-                                        </Grid>
-                                    </StackPanel>
-                                </Grid>
-                            </Border>
-                        </Grid>
-                        <Grid VerticalAlignment="Top" Width="200" Initialized="netspeedcheck">
-                            <Border x:Name="netborder" Background="{Binding Background, ElementName=timeb}" BorderBrush="{Binding BorderBrush, ElementName=timeb}" BorderThickness="{Binding BorderThickness, ElementName=cpuborder}" CornerRadius="{Binding CornerRadius, ElementName=settings}" Margin="0,0,0,10">
-                                <Grid>
-                                    <StackPanel>
-                                        <Label Foreground="{Binding color2}" Content="Netzwerk" Padding="0.1" HorizontalAlignment="Center" FontSize="20"/>
-                                        <Grid Margin="0,10,0,0">
-                                            <ProgressBar x:Name="netbar" Background="{Binding Background, ElementName=cpubar}" BorderBrush="{Binding Background, ElementName=cpubar}" Foreground="{Binding Foreground, ElementName=cpubar}" Width="180" Height="33"/>
-                                            <Label x:Name="netspeed" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="11,0,0,0" Content="0Mb/s"/>
-                                            <Label x:Name="netmax" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,11,0" Content="0ms 100Mb/s"/>
-                                        </Grid>
-                                    </StackPanel>
-                                </Grid>
-                            </Border>
-                        </Grid>
-                        <Grid VerticalAlignment="Top" Width="200" Initialized="netspeedcheck">
-                            <Border x:Name="linkborder" Background="{Binding Background, ElementName=timeb}" BorderBrush="{Binding BorderBrush, ElementName=timeb}" BorderThickness="{Binding BorderThickness, ElementName=cpuborder}" CornerRadius="{Binding CornerRadius, ElementName=settings}" Margin="0,0,0,10" Height="100">
-                                <Grid>
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,4,0,0">
-                                        <Button x:Name="b1" Click="b_Click" Content="..." Margin="3" Height="37" Width="86.6"/>
-                                        <Button x:Name="b2" Click="b_Click" Content="..." Margin="{Binding Margin, ElementName=b1}" Height="{Binding Height, ElementName=b1}" Width="{Binding Width, ElementName=b1}"/>
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,4">
-                                        <Button x:Name="b3" Click="b_Click" Content="..." Margin="{Binding Margin, ElementName=b1}" Height="{Binding Height, ElementName=b1}" Width="{Binding Width, ElementName=b1}"/>
-                                        <Button x:Name="b4" Click="b_Click" Content="..." Margin="{Binding Margin, ElementName=b1}" Height="{Binding Height, ElementName=b1}" Width="{Binding Width, ElementName=b1}"/>
-                                    </StackPanel>
-                                </Grid>
-                            </Border>
-                        </Grid>
-                    </StackPanel>
-                </ScrollViewer>
-
-                <Rectangle Width="{Binding ActualWidth, ElementName=settings, Mode=OneWay}" Margin="10,0,0,0" />
-            </StackPanel>
-        </ScrollViewer>
+            <Rectangle Width="{Binding ActualWidth, ElementName=settings, Mode=OneWay}" Margin="10,0,0,0" />
+            
+        </StackPanel>
 
         <Border x:Name="settings" CornerRadius="5,5,5,5" BorderThickness="2,2,2,2" BorderBrush="{Binding color3}" Background="{Binding color1}" HorizontalAlignment="Right" Margin="10,15,10,0">
             <Grid>
@@ -730,7 +730,7 @@
         </Grid>
         <Rectangle x:Name="taskscaler" Height="20" Fill="#00EAFF30" VerticalAlignment="Bottom"/>
 
-        <Border x:Name="popupf" MinHeight="300" MinWidth="500" BorderThickness="2" CornerRadius="7" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0" BorderBrush="#FFF1F1F1" Background="White">
+        <Border x:Name="popupf" BorderThickness="2" CornerRadius="7" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0" BorderBrush="#FFF1F1F1" Background="White">
             <Frame x:Name="popup" NavigationUIVisibility="Hidden" Margin="2"/>
         </Border>
         <Grid x:Name="popupgrid" MinHeight="300" MinWidth="500" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0">
